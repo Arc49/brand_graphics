@@ -17,8 +17,8 @@ Templates.transition = {
     const half = mid * 0.85; // time to cover; same to uncover
 
     if (p.style === "iris") {
-      const disc = k.el("div", "abs", root);
-      const ring = k.el("div", "abs", root);
+      const ring = k.el("div", "abs", root); // accent ring leads…
+      const disc = k.el("div", "abs", root); // …and the bg disc fills in on top of it
       const diag = Math.hypot(f.width, f.height);
       for (const d of [disc, ring]) Object.assign(d.style, { left: "50%", top: "50%", width: diag + "px", height: diag + "px",
         marginLeft: -diag / 2 + "px", marginTop: -diag / 2 + "px", borderRadius: "50%" });
