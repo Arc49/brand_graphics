@@ -29,9 +29,9 @@ Templates.title_card = {
       top: "50%", transform: "translateY(-50%)" });
 
     const labelMask = k.el("div", "mask", box);
-    const label = k.el("div", "mono", labelMask);
+    const label = k.el("div", "label", labelMask);
     label.textContent = p.label.toUpperCase();
-    Object.assign(label.style, { fontSize: 30 * u + "px", color: "var(--accent)", letterSpacing: "0.18em", marginBottom: 26 * u + "px" });
+    Object.assign(label.style, { fontSize: 30 * u + "px", color: "var(--accent)", marginBottom: 26 * u + "px" });
 
     const title = k.el("div", "display", box);
     Object.assign(title.style, { fontSize: (f.vertical ? 112 : 128) * u + "px", maxWidth: (f.vertical ? 900 : 1500) * u + "px", color: "var(--text)" });

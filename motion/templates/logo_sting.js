@@ -33,8 +33,18 @@ Templates.logo_sting = {
     textBox.style.textAlign = f.vertical ? "center" : "left";
     const nameMask = k.el("div", "mask", textBox);
     const name = k.el("div", "display", nameMask);
-    Object.assign(name.style, { fontSize: 120 * u + "px", color: "var(--text)", paddingBottom: "0.06em", whiteSpace: "nowrap" });
+    const wm = k.brand.wordmark || {};
+    Object.assign(name.style, { fontSize: (wm.uppercase ? 92 : 120) * u + "px", color: "var(--text)", paddingBottom: "0.06em",
+      whiteSpace: "nowrap", textTransform: wm.uppercase ? "uppercase" : "none", letterSpacing: wm.tracking || "inherit" });
     const chars = k.split(name, p.name || k.brand.name, "char");
+    // two-tone wordmark: colour one word with the accent (e.g. VISUAL in green, CRANIO in white)
+    if (wm.accentWord != null) {
+      let word = 0;
+      for (const node of name.childNodes) {
+        if (node.nodeType === 3) { word++; continue; }
+        if (word === wm.accentWord) node.style.color = "var(--accent)";
+      }
+    }
     let tag = null;
     if (p.tagline || k.brand.handle) {
       k.el("br", null, textBox);

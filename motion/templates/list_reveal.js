@@ -34,8 +34,8 @@ Templates.list_reveal = {
       const chk = k.el("div", null, row);
       const s = 52 * u;
       chk.innerHTML = `<svg width="${s}" height="${s}" viewBox="0 0 52 52"><rect x="3" y="3" width="46" height="46" rx="12" fill="none" stroke="var(--textMuted)" stroke-width="4"/>
-        <rect class="fill" x="3" y="3" width="46" height="46" rx="12" fill="var(--accent)"/>
-        <path class="tick" d="M14 27 l8 8 l16 -18" fill="none" stroke="var(--onAccent)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40"/></svg>`;
+        <rect class="fill" x="3" y="3" width="46" height="46" rx="12" fill="var(--action)"/>
+        <path class="tick" d="M14 27 l8 8 l16 -18" fill="none" stroke="var(--onAction)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40"/></svg>`;
       const label = k.el("div", "body", row);
       label.textContent = txt;
       Object.assign(label.style, { fontSize: 46 * u + "px" });

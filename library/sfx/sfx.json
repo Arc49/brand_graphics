@@ -1,17 +1,17 @@
 {
   "sampleRate": 48000,
   "bitDepth": 24,
-  "rootNote": "D",
-  "scale": "major",
+  "rootNote": "E",
+  "scale": "minor",
   "sounds": {
     "click_01": {
       "file": "ui/click_01.wav",
       "category": "ui",
       "description": "UI click \u2014 buttons, cursor, toggles",
-      "duration": 0.045,
+      "duration": 0.044,
       "sync": 0.0,
       "lufsMomentaryMax": -26.5,
-      "truePeakDb": -1.8
+      "truePeakDb": -2.9
     },
     "pop_01": {
       "file": "ui/pop_01.wav",
@@ -20,7 +20,7 @@
       "duration": 0.18,
       "sync": 0.0,
       "lufsMomentaryMax": -26.0,
-      "truePeakDb": -10.7
+      "truePeakDb": -10.0
     },
     "tick_01": {
       "file": "ui/tick_01.wav",
@@ -29,7 +29,7 @@
       "duration": 0.05,
       "sync": 0.0,
       "lufsMomentaryMax": -27.1,
-      "truePeakDb": -8.5
+      "truePeakDb": -9.1
     },
     "whoosh_short_01": {
       "file": "transition/whoosh_short_01.wav",
@@ -38,7 +38,7 @@
       "duration": 0.45,
       "sync": 0.248,
       "lufsMomentaryMax": -22.0,
-      "truePeakDb": -9.5
+      "truePeakDb": -9.3
     },
     "click_02": {
       "file": "ui/click_02.wav",
@@ -47,7 +47,7 @@
       "duration": 0.045,
       "sync": 0.0,
       "lufsMomentaryMax": -26.5,
-      "truePeakDb": -3.0
+      "truePeakDb": -3.2
     },
     "pop_02": {
       "file": "ui/pop_02.wav",
@@ -56,7 +56,7 @@
       "duration": 0.18,
       "sync": 0.0,
       "lufsMomentaryMax": -26.0,
-      "truePeakDb": -9.7
+      "truePeakDb": -10.8
     },
     "tick_02": {
       "file": "ui/tick_02.wav",
@@ -65,7 +65,7 @@
       "duration": 0.05,
       "sync": 0.0,
       "lufsMomentaryMax": -27.1,
-      "truePeakDb": -9.1
+      "truePeakDb": -9.2
     },
     "whoosh_short_02": {
       "file": "transition/whoosh_short_02.wav",
@@ -80,10 +80,10 @@
       "file": "ui/click_03.wav",
       "category": "ui",
       "description": "UI click \u2014 buttons, cursor, toggles",
-      "duration": 0.045,
+      "duration": 0.044,
       "sync": 0.0,
       "lufsMomentaryMax": -26.5,
-      "truePeakDb": -4.4
+      "truePeakDb": -2.9
     },
     "pop_03": {
       "file": "ui/pop_03.wav",
@@ -92,7 +92,7 @@
       "duration": 0.18,
       "sync": 0.0,
       "lufsMomentaryMax": -26.0,
-      "truePeakDb": -10.5
+      "truePeakDb": -11.6
     },
     "tick_03": {
       "file": "ui/tick_03.wav",
@@ -101,7 +101,7 @@
       "duration": 0.05,
       "sync": 0.0,
       "lufsMomentaryMax": -27.1,
-      "truePeakDb": -9.0
+      "truePeakDb": -9.4
     },
     "whoosh_short_03": {
       "file": "transition/whoosh_short_03.wav",
@@ -110,7 +110,7 @@
       "duration": 0.45,
       "sync": 0.248,
       "lufsMomentaryMax": -22.0,
-      "truePeakDb": -9.9
+      "truePeakDb": -10.1
     },
     "whoosh_long_01": {
       "file": "transition/whoosh_long_01.wav",
@@ -128,7 +128,7 @@
       "duration": 1.1,
       "sync": 0.55,
       "lufsMomentaryMax": -22.0,
-      "truePeakDb": -12.5
+      "truePeakDb": -12.6
     },
     "swish_01": {
       "file": "transition/swish_01.wav",
@@ -137,25 +137,25 @@
       "duration": 0.22,
       "sync": 0.099,
       "lufsMomentaryMax": -22.0,
-      "truePeakDb": -5.9
+      "truePeakDb": -5.8
     },
     "blip_up": {
       "file": "ui/blip_up.wav",
       "category": "ui",
       "description": "Positive two-note blip (appear)",
-      "duration": 0.39,
+      "duration": 0.36,
       "sync": 0.0,
       "lufsMomentaryMax": -26.0,
-      "truePeakDb": -14.2
+      "truePeakDb": -14.8
     },
     "blip_down": {
       "file": "ui/blip_down.wav",
       "category": "ui",
       "description": "Two-note blip (dismiss)",
-      "duration": 0.355,
+      "duration": 0.385,
       "sync": 0.0,
       "lufsMomentaryMax": -26.0,
-      "truePeakDb": -14.0
+      "truePeakDb": -14.5
     },
     "typing_01": {
       "file": "ui/typing_01.wav",
@@ -164,7 +164,7 @@
       "duration": 0.72,
       "sync": 0.0,
       "lufsMomentaryMax": -26.0,
-      "truePeakDb": -8.1
+      "truePeakDb": -8.3
     },
     "glitch_01": {
       "file": "transition/glitch_01.wav",
@@ -173,7 +173,7 @@
       "duration": 0.444,
       "sync": 0.0,
       "lufsMomentaryMax": -22.0,
-      "truePeakDb": -9.8
+      "truePeakDb": -10.0
     },
     "glitch_02": {
       "file": "transition/glitch_02.wav",
@@ -182,7 +182,7 @@
       "duration": 0.3,
       "sync": 0.0,
       "lufsMomentaryMax": -22.2,
-      "truePeakDb": -18.9
+      "truePeakDb": -19.0
     },
     "riser_1s": {
       "file": "riser/riser_1s.wav",
@@ -191,7 +191,7 @@
       "duration": 1.0,
       "sync": 1.0,
       "lufsMomentaryMax": -22.7,
-      "truePeakDb": -10.9
+      "truePeakDb": -10.8
     },
     "riser_2s": {
       "file": "riser/riser_2s.wav",
@@ -200,7 +200,7 @@
       "duration": 2.0,
       "sync": 2.0,
       "lufsMomentaryMax": -22.5,
-      "truePeakDb": -13.9
+      "truePeakDb": -13.3
     },
     "downlifter_01": {
       "file": "riser/downlifter_01.wav",
@@ -209,7 +209,7 @@
       "duration": 1.5,
       "sync": 0.0,
       "lufsMomentaryMax": -22.0,
-      "truePeakDb": -11.8
+      "truePeakDb": -11.7
     },
     "reverse_swell": {
       "file": "transition/reverse_swell.wav",
@@ -218,22 +218,22 @@
       "duration": 1.2,
       "sync": 1.2,
       "lufsMomentaryMax": -20.6,
-      "truePeakDb": -15.1
+      "truePeakDb": -14.4
     },
     "impact_soft": {
       "file": "impact/impact_soft.wav",
       "category": "impact",
       "description": "Soft low hit for titles / reveals",
-      "duration": 1.454,
+      "duration": 1.451,
       "sync": 0.0,
       "lufsMomentaryMax": -18.0,
-      "truePeakDb": -8.1
+      "truePeakDb": -8.6
     },
     "impact_hard": {
       "file": "impact/impact_hard.wav",
       "category": "impact",
       "description": "Cinematic hit for big statements",
-      "duration": 2.329,
+      "duration": 2.276,
       "sync": 0.0,
       "lufsMomentaryMax": -18.0,
       "truePeakDb": -4.6
@@ -245,22 +245,22 @@
       "duration": 1.8,
       "sync": 0.0,
       "lufsMomentaryMax": -18.0,
-      "truePeakDb": -16.3
+      "truePeakDb": -16.7
     },
     "chime": {
       "file": "tonal/chime.wav",
       "category": "tonal",
       "description": "Brand-key chord chime: info cards, tips",
-      "duration": 2.606,
+      "duration": 2.806,
       "sync": 0.0,
       "lufsMomentaryMax": -20.0,
-      "truePeakDb": -14.4
+      "truePeakDb": -15.4
     },
     "success": {
       "file": "tonal/success.wav",
       "category": "tonal",
       "description": "Rising arpeggio: wins, results, checkmarks",
-      "duration": 1.573,
+      "duration": 1.468,
       "sync": 0.21,
       "lufsMomentaryMax": -20.0,
       "truePeakDb": -12.8
@@ -269,19 +269,19 @@
       "file": "tonal/shimmer.wav",
       "category": "tonal",
       "description": "Sparkle sweetener on reveals",
-      "duration": 2.42,
+      "duration": 2.398,
       "sync": 0.0,
       "lufsMomentaryMax": -20.0,
-      "truePeakDb": -14.2
+      "truePeakDb": -16.4
     },
     "sonic_logo": {
       "file": "brand/sonic_logo.wav",
       "category": "brand",
       "description": "Brand audio signature for intro / outro",
-      "duration": 3.304,
+      "duration": 3.215,
       "sync": 0.475,
       "lufsMomentaryMax": -16.0,
-      "truePeakDb": -9.4
+      "truePeakDb": -9.8
     }
   }
 }

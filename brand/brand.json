@@ -1,23 +1,50 @@
 {
-  "_status": "PLACEHOLDER — replace with real brand guidelines. Every template and sound reads from this file.",
-  "name": "Your Brand",
-  "handle": "@yourbrand",
+  "_status": "DRAFT from style references (Visual Cranio app + clean white story). Name/handle/logo are placeholders — every template and sound reads from this file.",
+  "name": "Visual Cranio",
+  "handle": "@visualcranio",
   "logo": "brand/logo.svg",
-  "color": {
-    "bg": "#0E0F12",
-    "surface": "#1A1C22",
-    "text": "#F5F5F7",
-    "textMuted": "#A1A4AD",
-    "accent": "#FF5A1F",
-    "accent2": "#3D7BFF",
-    "onAccent": "#0E0F12"
+  "wordmark": {
+    "uppercase": true,
+    "tracking": "0.14em",
+    "accentWord": 0
+  },
+  "theme": "dark",
+  "themes": {
+    "dark": {
+      "_ref": "Visual Cranio app UI",
+      "bg": "#0A0A0A",
+      "surface": "#161616",
+      "text": "#FFFFFF",
+      "textMuted": "#8C8C8C",
+      "accent": "#14B886",
+      "accent2": "#E5483B",
+      "onAccent": "#03140E",
+      "stroke": "#2A2A2A",
+      "highlight": "#14B886",
+      "action": "#14B886",
+      "onAction": "#03140E"
+    },
+    "light": {
+      "_ref": "Clean white story",
+      "bg": "#FFFFFF",
+      "surface": "#F1F1F1",
+      "text": "#111111",
+      "textMuted": "#5C5C5C",
+      "accent": "#E0473A",
+      "accent2": "#3DA35D",
+      "onAccent": "#FFFFFF",
+      "stroke": "#E2E2E2",
+      "highlight": "#E0473A",
+      "action": "#3DA35D",
+      "onAction": "#FFFFFF"
+    }
   },
   "font": {
     "display": {
-      "family": "Inter Display",
+      "family": "Poppins",
       "weight": 800,
-      "file": null,
-      "tracking": "-0.02em"
+      "file": "brand/fonts/poppins-latin-800-normal.woff2",
+      "tracking": "-0.025em"
     },
     "body": {
       "family": "Inter",
@@ -25,15 +52,26 @@
       "file": null,
       "tracking": "0em"
     },
-    "mono": {
-      "family": "DejaVu Sans Mono",
-      "weight": 400,
-      "file": null,
+    "label": {
+      "family": "Poppins",
+      "weight": 700,
+      "file": "brand/fonts/poppins-latin-700-normal.woff2",
+      "tracking": "0.14em"
+    },
+    "bodyStrong": {
+      "family": "Poppins",
+      "weight": 600,
+      "file": "brand/fonts/poppins-latin-600-normal.woff2",
       "tracking": "0em"
     }
   },
+  "text": {
+    "highlight": "color",
+    "align": "left",
+    "lineHeight": 1.02
+  },
   "shape": {
-    "radius": 14,
+    "radius": 16,
     "stroke": 4,
     "safeMargin": 0.06
   },
@@ -88,10 +126,10 @@
   "sound": {
     "sampleRate": 48000,
     "bitDepth": 24,
-    "rootNote": "D",
-    "scale": "major",
+    "rootNote": "E",
+    "scale": "minor",
     "character": "clean",
-    "brightness": 0.6,
+    "brightness": 0.65,
     "seed": 49,
     "loudness": {
       "_note": "Targets are max-momentary LUFS per SFX file. Dialogue should sit around -14 LUFS integrated (YouTube/Shorts).",

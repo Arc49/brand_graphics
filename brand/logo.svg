@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <!-- PLACEHOLDER mark: replace with the real logo. Use currentColor so templates can recolour it. -->
-  <rect x="8" y="8" width="84" height="84" rx="22" fill="currentColor"/>
-  <path d="M30 68 L50 30 L70 68" fill="none" stroke="#0E0F12" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- PLACEHOLDER mark (hexagon, after the Visual Cranio UI). Replace with the real logo; currentColor = theme accent. -->
+  <path d="M50 8 L86 29 L86 71 L50 92 L14 71 L14 29 Z" fill="none" stroke="currentColor" stroke-width="9" stroke-linejoin="round"/>
+  <path d="M50 30 L68 40.5 L68 59.5 L50 70 L32 59.5 L32 40.5 Z" fill="currentColor" opacity=".9"/>
 </svg>

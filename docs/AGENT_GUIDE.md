@@ -59,6 +59,7 @@ sfx_start = event_time − sfx.sync
 ```bash
 node render/render.mjs --template lower_third --name lt_sam \
   --props '{"name":"Sam Lee","title":"Head of Growth"}' --formats landscape,vertical
+# add --theme light|dark (default: brand.json "theme")
 # add --fast to skip ProRes (WebM + WAV + preview only; much faster)
 # add --out library/overlays to add it to the committed library
 ```
@@ -70,7 +71,7 @@ Props per template (defaults are in each `motion/templates/*.js`):
 | `lower_third` | `name`, `title`, `hold` |
 | `title_card` | `label`, `title`, `background` (bool), `hold` |
 | `callout` | `text`, `icon` (emoji/char or null), `x`, `y` (0–1 of frame), `style` (`accent`/`surface`), `hold` |
-| `punch_text` | `text` (wrap words in `*stars*` to highlight), `wordGap`, `hold`, `scrim` |
+| `punch_text` | `text` (wrap one word in `*stars*` to highlight), `sub` (smaller line; `*stars*` = action colour; end with `→` for a nudging arrow), `anim` (`rise`/`slam`), `align` (`left`/`center`), `background` (full theme card, e.g. story frames), `scrim`, `wordGap`, `hold` |
 | `stat_counter` | `value`, `prefix`, `suffix`, `decimals`, `label`, `countDur`, `hold`, `x`, `y`, `compact` |
 | `list_reveal` | `heading`, `items[]`, `gap` **or** `times[]` (seconds from clip start), `hold`, `panel` |
 | `transition` | `style` (`bands`/`iris`/`slide`), `dur` |

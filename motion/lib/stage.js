@@ -27,21 +27,14 @@
 
   function applyBrand(b) {
     const css = [];
-    for (const [k, f] of Object.entries(b.font)) {
-      if (f.file) css.push(`@font-face{font-family:"${f.family}";src:url("${ROOT}${f.file}");font-weight:${f.weight};}`);
+    const v = { "--radius": b.shape.radius + "px", "--stroke": b.shape.stroke + "px", "--leading": (b.text && b.text.lineHeight) || 1.05 };
+    // every font role becomes --font-<role>, --<role>-weight, --<role>-tracking (+ a .<role> class in base.css)
+    for (const [role, f] of Object.entries(b.font)) {
+      if (f.file) css.push(`@font-face{font-family:"${f.family}";src:url("${ROOT}${f.file}");font-weight:${f.weight};font-display:block;}`);
+      v[`--font-${role}`] = `"${f.family}", Inter, sans-serif`;
+      v[`--${role}-weight`] = f.weight;
+      v[`--${role}-tracking`] = f.tracking || "0em";
     }
-    const v = {
-      "--font-display": `"${b.font.display.family}", Inter, sans-serif`,
-      "--display-weight": b.font.display.weight,
-      "--display-tracking": b.font.display.tracking,
-      "--font-body": `"${b.font.body.family}", Inter, sans-serif`,
-      "--body-weight": b.font.body.weight,
-      "--body-tracking": b.font.body.tracking,
-      "--font-mono": `"${b.font.mono.family}", monospace`,
-      "--radius": b.shape.radius + "px",
-      "--stroke": b.shape.stroke + "px",
-    };
-    for (const [k, c] of Object.entries(b.color)) v["--" + k] = c;
     css.push(":root{" + Object.entries(v).map(([k, x]) => `${k}:${x}`).join(";") + "}");
     const style = document.createElement("style");
     style.textContent = css.join("\n");
@@ -70,10 +63,19 @@
       safeX: f.width * safe, safeY: f.height * (vertical ? safe * 1.6 : safe), fps: brand.motion.fps };
   }
 
-  async function mount(id, props = {}, formatKey = "landscape") {
+  function setTheme(name) {
+    const th = brand.themes[name || brand.theme];
+    if (!th) throw new Error("unknown theme " + name + " (have: " + Object.keys(brand.themes).join(", ") + ")");
+    for (const [k, c] of Object.entries(th)) if (!k.startsWith("_")) stage.style.setProperty("--" + k, c);
+    kit.theme = name || brand.theme;
+    kit.color = th;
+  }
+
+  async function mount(id, props = {}, formatKey = "landscape", theme = null) {
     await ready;
     const T = Templates[id];
     if (!T) throw new Error("unknown template " + id + " (have: " + Object.keys(Templates).join(", ") + ")");
+    setTheme(theme);
     const fmt = fmtFor(formatKey);
     const p = Object.assign({}, T.defaults || {}, props);
     stage.innerHTML = "";
@@ -88,7 +90,7 @@
     await document.fonts.ready;
     current = { id, T, p, fmt, duration, cues, render };
     render(0);
-    return { id, duration, cues, fps: fmt.fps, width: fmt.width, height: fmt.height, props: p };
+    return { id, duration, cues, fps: fmt.fps, width: fmt.width, height: fmt.height, props: p, theme: kit.theme };
   }
 
   function seek(t) {
@@ -181,10 +183,10 @@
     let props = {};
     try { props = JSON.parse($("props").value || "{}"); } catch (e) { }
     stopAudio(); playing = false; $("play").textContent = "▶ Play";
-    await mount($("tpl").value, props, $("fmt").value);
+    await mount($("tpl").value, props, $("fmt").value, $("theme").value);
     fit(); drawCues(); show(0);
     const u = new URL(location.href);
-    u.searchParams.set("t", $("tpl").value); u.searchParams.set("f", $("fmt").value);
+    u.searchParams.set("t", $("tpl").value); u.searchParams.set("f", $("fmt").value); u.searchParams.set("theme", $("theme").value);
     history.replaceState(null, "", u);
   }
 
@@ -192,6 +194,9 @@
     const list = await window.__list();
     $("tpl").innerHTML = list.map((x) => `<option value="${x.id}">${x.name}</option>`).join("");
     $("fmt").innerHTML = Object.entries(brand.formats).map(([k, f]) => `<option value="${k}">${f.label}</option>`).join("");
+    $("theme").innerHTML = Object.keys(brand.themes).map((k) => `<option value="${k}">Theme: ${k}</option>`).join("");
+    $("theme").value = qs.get("theme") || brand.theme;
+    $("theme").onchange = remount;
     if (qs.get("t")) $("tpl").value = qs.get("t");
     if (qs.get("f")) $("fmt").value = qs.get("f");
     const setProps = () => { $("props").value = JSON.stringify(Templates[$("tpl").value].defaults || {}, null, 2); };

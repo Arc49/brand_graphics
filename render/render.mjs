@@ -8,7 +8,7 @@
 // and merges an entry per render into out/manifest.json for editing agents.
 //
 //   node render/render.mjs --job jobs/showcase.json [--only name,name] [--formats landscape] [--fast]
-//   node render/render.mjs --template lower_third --props '{"name":"Sam"}' --formats landscape,vertical
+//   node render/render.mjs --template lower_third --props '{"name":"Sam"}' --formats landscape,vertical [--theme light]
 import fs from "node:fs";
 import path from "node:path";
 import http from "node:http";
@@ -92,14 +92,16 @@ async function mixAudio(items, lead, outWav) {
 }
 
 async function renderOne(page, base, job, fmtKey, opts) {
-  const name = `${job.name || job.template}_${fmtKey}`;
-  const dir = path.join(opts.out, job.name || job.template);
-  fs.mkdirSync(dir, { recursive: true });
   const brand = JSON.parse(fs.readFileSync(path.join(ROOT, "brand/brand.json"), "utf8"));
+  const theme = job.theme || opts.theme || brand.theme;
+  const base_ = (job.name || job.template) + (!job.name && theme !== brand.theme ? `_${theme}` : "");
+  const name = `${base_}_${fmtKey}`;
+  const dir = path.join(opts.out, base_);
+  fs.mkdirSync(dir, { recursive: true });
   const f = brand.formats[fmtKey];
   await page.setViewportSize({ width: f.width, height: f.height });
   await page.goto(`${base}/motion/stage.html?mode=render`);
-  const info = await page.evaluate(([id, props, fk]) => window.__mount(id, props, fk), [job.template, job.props || {}, fmtKey]);
+  const info = await page.evaluate(([id, props, fk, th]) => window.__mount(id, props, fk, th), [job.template, job.props || {}, fmtKey, theme]);
   const meta = await page.evaluate((id) => {
     const T = Templates[id];
     return { usage: T.usage, description: T.description, category: T.category, name: T.name };
@@ -158,7 +160,7 @@ async function renderOne(page, base, job, fmtKey, opts) {
 
   console.log(`  ✓ ${name}  ${nFrames} frames in ${secs}s${leadFrames ? `  (lead-in ${leadT.toFixed(2)}s)` : ""}`);
   return {
-    id: name, template: job.template, templateName: meta.name, category: meta.category, format: fmtKey,
+    id: name, template: job.template, templateName: meta.name, category: meta.category, format: fmtKey, theme,
     width: f.width, height: f.height, fps, duration: +(nFrames / fps).toFixed(3), leadIn: +leadT.toFixed(3),
     dir: path.relative(opts.out, dir), files, props: info.props,
     anchor: { t: +(anchor.t + leadT).toFixed(3), event: anchor.event },
@@ -169,7 +171,7 @@ async function renderOne(page, base, job, fmtKey, opts) {
 
 async function main() {
   const a = args();
-  const opts = { out: path.resolve(ROOT, a.out || "out"), fast: !!a.fast, fps: a.fps };
+  const opts = { out: path.resolve(ROOT, a.out || "out"), fast: !!a.fast, fps: a.fps, theme: a.theme };
   let jobs;
   if (a.job) jobs = JSON.parse(fs.readFileSync(path.resolve(a.job), "utf8")).renders;
   else if (a.template) jobs = [{ name: a.name, template: a.template, props: a.props ? JSON.parse(a.props) : {} }];
@@ -191,20 +193,27 @@ async function main() {
 
   const manifestPath = path.join(opts.out, "manifest.json");
   const manifest = fs.existsSync(manifestPath) ? JSON.parse(fs.readFileSync(manifestPath, "utf8")) : { assets: {} };
+  const save = () => {
+    manifest.generated = new Date().toISOString();
+    manifest.brand = JSON.parse(fs.readFileSync(path.join(ROOT, "brand/brand.json"), "utf8")).name;
+    fs.mkdirSync(opts.out, { recursive: true });
+    fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
+  };
   try {
     for (const job of jobs) {
       for (const fk of fmtOverride || job.formats || ["landscape", "vertical"]) {
+        const done = Object.values(manifest.assets).find((e) => e.template === job.template && e.format === fk &&
+          e.dir === (job.name || job.template) + (!job.name && job.theme && job.theme !== JSON.parse(fs.readFileSync(path.join(ROOT, "brand/brand.json"), "utf8")).theme ? `_${job.theme}` : ""));
+        if (a.resume && done && fs.existsSync(path.join(opts.out, done.dir, done.files.webm))) { console.log(`  · ${done.id} (kept)`); continue; }
         const entry = await renderOne(page, base, job, fk, opts);
         manifest.assets[entry.id] = entry;
+        save(); // after every render, so an interrupted run can --resume
       }
     }
   } finally {
     await browser.close();
     srv.close();
-    manifest.generated = new Date().toISOString();
-    manifest.brand = JSON.parse(fs.readFileSync(path.join(ROOT, "brand/brand.json"), "utf8")).name;
-    fs.mkdirSync(opts.out, { recursive: true });
-    fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
+    save();
   }
 }
 

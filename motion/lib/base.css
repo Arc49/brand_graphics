@@ -7,9 +7,10 @@ html, body { margin: 0; padding: 0; background: transparent; overflow: hidden; }
   font-family: var(--font-body); color: var(--text);
   -webkit-font-smoothing: antialiased; text-rendering: geometricPrecision;
 }
-#stage .display { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); line-height: 1.02; }
+#stage .display { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); line-height: var(--leading); }
 #stage .body { font-family: var(--font-body); font-weight: var(--body-weight); letter-spacing: var(--body-tracking); }
-#stage .mono { font-family: var(--font-mono); }
+#stage .strong { font-family: var(--font-bodyStrong); font-weight: var(--bodyStrong-weight); letter-spacing: var(--bodyStrong-tracking); }
+#stage .label { font-family: var(--font-label); font-weight: var(--label-weight); letter-spacing: var(--label-tracking); text-transform: uppercase; }
 #stage .abs { position: absolute; }
 #stage .mask { overflow: hidden; display: inline-block; vertical-align: top; }
 #stage .logo svg { width: 100%; height: 100%; display: block; }

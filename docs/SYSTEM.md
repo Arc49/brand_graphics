@@ -3,8 +3,33 @@
 These are the rules that make the videos feel like one brand. The tokens live in
 [`brand/brand.json`](../brand/brand.json). This document explains how to use them.
 
-> **Status:** the colours, fonts and logo are placeholders until the real brand
-> guidelines arrive. The *rules* below still apply after the swap.
+> **Status:** draft based on two style references: the Visual Cranio app UI (dark)
+> and a clean white "glow-up myths" story (light). Name, handle and logo are
+> placeholders. The *rules* below still apply when the final guidelines replace them.
+
+## 0. Visual identity (draft)
+
+| | `dark` theme (app UI) | `light` theme (story) |
+|---|---|---|
+| Background | `#0A0A0A` | `#FFFFFF` |
+| Surface | `#161616` | `#F1F1F1` |
+| Text / muted | `#FFFFFF` / `#8C8C8C` | `#111111` / `#5C5C5C` |
+| Accent (brand mark, rings, lines) | emerald `#14B886` | red `#E0473A` |
+| Highlight (the *one* key word) | emerald `#14B886` | red `#E0473A` |
+| Action (buttons, "Tap through →", checks) | emerald `#14B886` | green `#3DA35D` |
+
+**Type:** Poppins ExtraBold (800) for headlines, tight tracking (−0.025em) and
+leading (1.02). Poppins SemiBold for sub-lines. Inter for small UI text. Labels and
+the wordmark use Poppins Bold, UPPERCASE, +0.14em tracking, with the first word in
+the accent colour (**VISUAL** CRANIO).
+
+**Highlighting:** colour the key word. Don't box it. One highlight per statement.
+A sub-line can end in an *action* phrase in the action colour plus an arrow that
+nudges.
+
+**When to use which theme:** `dark` for long-form, app and product content, and
+over footage. `light` for story and carousel-style Shorts frames (`punch_text`
+with `background: true`) and educational list content.
 
 ---
 
@@ -63,8 +88,9 @@ positions to `callout`, keep them inside the safe areas.
 ## 3. Sound tokens
 
 All tonal sounds (chimes, blips, risers, the sonic logo) are tuned to
-**`sound.rootNote` + `sound.scale`** (placeholder: D major). Pick music beds in
-the same key or its relative minor (B minor) so stings never clash with the music.
+**`sound.rootNote` + `sound.scale`** (draft: E minor, which reads sleek, serious and
+clinical rather than cute). Pick music beds in E minor or its relative major
+(G major) so stings never clash with the music.
 
 ### Loudness ladder (what the timeline should measure)
 

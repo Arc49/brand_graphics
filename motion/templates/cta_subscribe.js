@@ -43,8 +43,8 @@ Templates.cta_subscribe = {
       wrap.style.transform = `translate(-50%, calc(-50% + ${(1 - sIn) * 160 * u + ex * 120 * u}px))`;
       wrap.style.opacity = String(Math.min(1, t / 0.12) * (1 - ex));
       const done = t >= clickAt;
-      btn.style.background = done ? "var(--surface)" : "var(--accent)";
-      btn.style.color = done ? "var(--textMuted)" : "var(--onAccent)";
+      btn.style.background = done ? "var(--surface)" : "var(--action)";
+      btn.style.color = done ? "var(--textMuted)" : "var(--onAction)";
       label.textContent = done ? p.doneLabel + " ✓" : p.label;
       const press = t > clickAt - 0.08 && t < clickAt + 0.14 ? 0.93 : 1;
       btn.style.transform = `scale(${press})`;

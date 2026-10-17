@@ -29,7 +29,7 @@ const page = await browser.newPage({ viewport: { width: F.width, height: F.heigh
 page.on("pageerror", (e) => console.error("page error:", e.message));
 await page.goto(`http://127.0.0.1:${srv.address().port}/motion/stage.html?mode=render`);
 await page.addStyleTag({ content: "body{background:#4a5363 !important}" });
-const info = await page.evaluate(([t, p, f]) => window.__mount(t, p, f), [tpl, JSON.parse(opt("props", "{}")), fmt]);
+const info = await page.evaluate(([t, p, f, th]) => window.__mount(t, p, f, th), [tpl, JSON.parse(opt("props", "{}")), fmt, opt("theme", null)]);
 const times = opt("times") ? opt("times").split(",").map(Number) : Array.from({ length: 8 }, (_, i) => (info.duration * (i + 0.5)) / 8);
 const dir = fs.mkdtempSync("/tmp/snap-");
 for (const [i, t] of times.entries()) {
