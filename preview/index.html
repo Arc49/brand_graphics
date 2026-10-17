@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brand Motion Kit</title>
+<style>
+  :root { --bg:#0b0c0f; --card:#14161b; --line:#262931; --text:#eceef2; --muted:#9097a3; --accent:#ff5a1f; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:14px/1.5 Inter, system-ui, sans-serif; }
+  header { padding:28px 24px 8px; max-width:1280px; margin:auto; }
+  h1 { margin:0 0 4px; font:800 28px/1.1 "Inter Display", Inter, sans-serif; letter-spacing:-.02em; }
+  header p { margin:0; color:var(--muted); }
+  nav { display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; }
+  nav button, nav a { background:var(--card); color:var(--text); border:1px solid var(--line); border-radius:999px; padding:6px 14px; font:inherit; cursor:pointer; text-decoration:none; }
+  nav button.on { background:var(--accent); border-color:var(--accent); color:#0b0c0f; font-weight:600; }
+  main { max-width:1280px; margin:auto; padding:16px 24px 60px; display:grid; gap:16px; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden; display:flex; flex-direction:column; }
+  .card video { width:100%; background:#000; display:block; }
+  .card.vertical video { aspect-ratio:9/16; max-height:520px; object-fit:contain; }
+  .card.landscape video { aspect-ratio:16/9; }
+  .meta { padding:12px 14px 14px; display:flex; flex-direction:column; gap:6px; }
+  .meta h3 { margin:0; font-size:15px; }
+  .tags { display:flex; gap:6px; flex-wrap:wrap; }
+  .tag { font-size:11px; color:var(--muted); border:1px solid var(--line); border-radius:6px; padding:1px 6px; }
+  .usage { color:var(--muted); font-size:12.5px; }
+  .files a { color:var(--accent); font-size:12px; margin-right:10px; }
+  .sfx { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:10px; max-width:1280px; margin:auto; padding:0 24px 60px; }
+  .sfx .row { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:10px 12px; }
+  .sfx .row b { font-size:13px; } .sfx .row small { color:var(--muted); display:block; }
+  .sfx audio { width:100%; height:32px; margin-top:6px; }
+  h2 { max-width:1280px; margin:24px auto 12px; padding:0 24px; font-size:18px; }
+  .empty { color:var(--muted); padding:24px; }
+</style>
+</head>
+<body>
+<header>
+  <h1 id="title">Brand Motion Kit</h1>
+  <p>Transparent overlays with synced sound design, in 16:9 and 9:16. Click a card to play it with sound.</p>
+  <nav id="filters"></nav>
+</header>
+<main id="grid"><div class="empty">Loading manifest…</div></main>
+<h2>Sound effects library</h2>
+<div class="sfx" id="sfx"></div>
+<script>
+  const qs = new URLSearchParams(location.search);
+  const MANIFEST = qs.get("m") || "../library/overlays/manifest.json";
+  const base = MANIFEST.replace(/manifest\.json$/, "");
+  let assets = [], filter = "all";
+
+  function render() {
+    const grid = document.getElementById("grid");
+    const list = assets.filter((a) => filter === "all" || a.format === filter || a.category === filter);
+    grid.innerHTML = list.map((a) => `
+      <div class="card ${a.format}">
+        <video src="${base}${a.dir}/${a.files.preview}" poster="${base}${a.dir}/${a.files.poster}" controls preload="none" playsinline></video>
+        <div class="meta">
+          <h3>${a.id}</h3>
+          <div class="tags"><span class="tag">${a.templateName}</span><span class="tag">${a.width}×${a.height}</span>
+            <span class="tag">${a.duration.toFixed(2)}s @ ${a.fps}fps</span><span class="tag">anchor ${a.anchor.t}s</span></div>
+          <div class="usage">${a.usage}</div>
+          <div class="usage"><b>Anchor:</b> ${a.anchor.event}</div>
+          <div class="files">${Object.entries(a.files).filter(([k]) => k !== "preview" && k !== "poster")
+            .map(([k, f]) => `<a href="${base}${a.dir}/${f}" download>${k}</a>`).join("")}</div>
+        </div>
+      </div>`).join("") || '<div class="empty">Nothing here.</div>';
+  }
+
+  fetch(MANIFEST).then((r) => r.json()).then((m) => {
+    assets = Object.values(m.assets).sort((a, b) => a.id.localeCompare(b.id));
+    if (m.brand) document.getElementById("title").textContent = m.brand + " · Motion Kit";
+    const cats = ["all", "landscape", "vertical", ...new Set(assets.map((a) => a.category))];
+    const nav = document.getElementById("filters");
+    nav.innerHTML = cats.map((c) => `<button data-f="${c}" class="${c === "all" ? "on" : ""}">${c}</button>`).join("")
+      + `<a href="../motion/stage.html">Live template player ↗</a>`;
+    nav.onclick = (e) => {
+      const f = e.target.dataset.f; if (!f) return;
+      filter = f; nav.querySelectorAll("button").forEach((b) => b.classList.toggle("on", b.dataset.f === f)); render();
+    };
+    render();
+  }).catch(() => { document.getElementById("grid").innerHTML = `<div class="empty">No manifest at ${MANIFEST}. Run <code>npm run library</code>.</div>`; });
+
+  fetch("../library/sfx/sfx.json").then((r) => r.json()).then((s) => {
+    document.getElementById("sfx").innerHTML = Object.entries(s.sounds).map(([n, x]) => `
+      <div class="row"><b>${n}</b> <small>${x.category} · ${x.duration}s · sync ${x.sync}s · ${x.lufsMomentaryMax} LUFS-M — ${x.description}</small>
+      <audio controls preload="none" src="../library/sfx/${x.file}"></audio></div>`).join("");
+  });
+</script>
+</body>
+</html>

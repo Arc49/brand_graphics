@@ -1,0 +1,287 @@
+{
+  "sampleRate": 48000,
+  "bitDepth": 24,
+  "rootNote": "D",
+  "scale": "major",
+  "sounds": {
+    "click_01": {
+      "file": "ui/click_01.wav",
+      "category": "ui",
+      "description": "UI click \u2014 buttons, cursor, toggles",
+      "duration": 0.045,
+      "sync": 0.0,
+      "lufsMomentaryMax": -26.5,
+      "truePeakDb": -1.8
+    },
+    "pop_01": {
+      "file": "ui/pop_01.wav",
+      "category": "ui",
+      "description": "Element pop-in (callouts, icons, words)",
+      "duration": 0.18,
+      "sync": 0.0,
+      "lufsMomentaryMax": -26.0,
+      "truePeakDb": -10.7
+    },
+    "tick_01": {
+      "file": "ui/tick_01.wav",
+      "category": "ui",
+      "description": "Counter / list-item tick",
+      "duration": 0.05,
+      "sync": 0.0,
+      "lufsMomentaryMax": -27.1,
+      "truePeakDb": -8.5
+    },
+    "whoosh_short_01": {
+      "file": "transition/whoosh_short_01.wav",
+      "category": "transition",
+      "description": "Fast whoosh for text in/out, quick cuts",
+      "duration": 0.45,
+      "sync": 0.248,
+      "lufsMomentaryMax": -22.0,
+      "truePeakDb": -9.5
+    },
+    "click_02": {
+      "file": "ui/click_02.wav",
+      "category": "ui",
+      "description": "UI click \u2014 buttons, cursor, toggles",
+      "duration": 0.045,
+      "sync": 0.0,
+      "lufsMomentaryMax": -26.5,
+      "truePeakDb": -3.0
+    },
+    "pop_02": {
+      "file": "ui/pop_02.wav",
+      "category": "ui",
+      "description": "Element pop-in (callouts, icons, words)",
+      "duration": 0.18,
+      "sync": 0.0,
+      "lufsMomentaryMax": -26.0,
+      "truePeakDb": -9.7
+    },
+    "tick_02": {
+      "file": "ui/tick_02.wav",
+      "category": "ui",
+      "description": "Counter / list-item tick",
+      "duration": 0.05,
+      "sync": 0.0,
+      "lufsMomentaryMax": -27.1,
+      "truePeakDb": -9.1
+    },
+    "whoosh_short_02": {
+      "file": "transition/whoosh_short_02.wav",
+      "category": "transition",
+      "description": "Fast whoosh for text in/out, quick cuts",
+      "duration": 0.45,
+      "sync": 0.248,
+      "lufsMomentaryMax": -22.0,
+      "truePeakDb": -7.8
+    },
+    "click_03": {
+      "file": "ui/click_03.wav",
+      "category": "ui",
+      "description": "UI click \u2014 buttons, cursor, toggles",
+      "duration": 0.045,
+      "sync": 0.0,
+      "lufsMomentaryMax": -26.5,
+      "truePeakDb": -4.4
+    },
+    "pop_03": {
+      "file": "ui/pop_03.wav",
+      "category": "ui",
+      "description": "Element pop-in (callouts, icons, words)",
+      "duration": 0.18,
+      "sync": 0.0,
+      "lufsMomentaryMax": -26.0,
+      "truePeakDb": -10.5
+    },
+    "tick_03": {
+      "file": "ui/tick_03.wav",
+      "category": "ui",
+      "description": "Counter / list-item tick",
+      "duration": 0.05,
+      "sync": 0.0,
+      "lufsMomentaryMax": -27.1,
+      "truePeakDb": -9.0
+    },
+    "whoosh_short_03": {
+      "file": "transition/whoosh_short_03.wav",
+      "category": "transition",
+      "description": "Fast whoosh for text in/out, quick cuts",
+      "duration": 0.45,
+      "sync": 0.248,
+      "lufsMomentaryMax": -22.0,
+      "truePeakDb": -9.9
+    },
+    "whoosh_long_01": {
+      "file": "transition/whoosh_long_01.wav",
+      "category": "transition",
+      "description": "Big pass-by for scene transitions",
+      "duration": 1.0,
+      "sync": 0.6,
+      "lufsMomentaryMax": -22.0,
+      "truePeakDb": -12.9
+    },
+    "whoosh_long_02": {
+      "file": "transition/whoosh_long_02.wav",
+      "category": "transition",
+      "description": "Pass-by, right to left",
+      "duration": 1.1,
+      "sync": 0.55,
+      "lufsMomentaryMax": -22.0,
+      "truePeakDb": -12.5
+    },
+    "swish_01": {
+      "file": "transition/swish_01.wav",
+      "category": "transition",
+      "description": "Tiny high swish: lower thirds, small slides",
+      "duration": 0.22,
+      "sync": 0.099,
+      "lufsMomentaryMax": -22.0,
+      "truePeakDb": -5.9
+    },
+    "blip_up": {
+      "file": "ui/blip_up.wav",
+      "category": "ui",
+      "description": "Positive two-note blip (appear)",
+      "duration": 0.39,
+      "sync": 0.0,
+      "lufsMomentaryMax": -26.0,
+      "truePeakDb": -14.2
+    },
+    "blip_down": {
+      "file": "ui/blip_down.wav",
+      "category": "ui",
+      "description": "Two-note blip (dismiss)",
+      "duration": 0.355,
+      "sync": 0.0,
+      "lufsMomentaryMax": -26.0,
+      "truePeakDb": -14.0
+    },
+    "typing_01": {
+      "file": "ui/typing_01.wav",
+      "category": "ui",
+      "description": "Keyboard typing burst for typewriter text",
+      "duration": 0.72,
+      "sync": 0.0,
+      "lufsMomentaryMax": -26.0,
+      "truePeakDb": -8.1
+    },
+    "glitch_01": {
+      "file": "transition/glitch_01.wav",
+      "category": "transition",
+      "description": "Digital glitch stutter",
+      "duration": 0.444,
+      "sync": 0.0,
+      "lufsMomentaryMax": -22.0,
+      "truePeakDb": -9.8
+    },
+    "glitch_02": {
+      "file": "transition/glitch_02.wav",
+      "category": "transition",
+      "description": "Short digital glitch",
+      "duration": 0.3,
+      "sync": 0.0,
+      "lufsMomentaryMax": -22.2,
+      "truePeakDb": -18.9
+    },
+    "riser_1s": {
+      "file": "riser/riser_1s.wav",
+      "category": "riser",
+      "description": "Short build into a reveal (sync = end)",
+      "duration": 1.0,
+      "sync": 1.0,
+      "lufsMomentaryMax": -22.7,
+      "truePeakDb": -10.9
+    },
+    "riser_2s": {
+      "file": "riser/riser_2s.wav",
+      "category": "riser",
+      "description": "Build into a big moment (sync = end)",
+      "duration": 2.0,
+      "sync": 2.0,
+      "lufsMomentaryMax": -22.5,
+      "truePeakDb": -13.9
+    },
+    "downlifter_01": {
+      "file": "riser/downlifter_01.wav",
+      "category": "riser",
+      "description": "Release after a peak / scene end",
+      "duration": 1.5,
+      "sync": 0.0,
+      "lufsMomentaryMax": -22.0,
+      "truePeakDb": -11.8
+    },
+    "reverse_swell": {
+      "file": "transition/reverse_swell.wav",
+      "category": "transition",
+      "description": "Reverse-reverb suck into a cut (sync = end)",
+      "duration": 1.2,
+      "sync": 1.2,
+      "lufsMomentaryMax": -20.6,
+      "truePeakDb": -15.1
+    },
+    "impact_soft": {
+      "file": "impact/impact_soft.wav",
+      "category": "impact",
+      "description": "Soft low hit for titles / reveals",
+      "duration": 1.454,
+      "sync": 0.0,
+      "lufsMomentaryMax": -18.0,
+      "truePeakDb": -8.1
+    },
+    "impact_hard": {
+      "file": "impact/impact_hard.wav",
+      "category": "impact",
+      "description": "Cinematic hit for big statements",
+      "duration": 2.329,
+      "sync": 0.0,
+      "lufsMomentaryMax": -18.0,
+      "truePeakDb": -4.6
+    },
+    "sub_drop": {
+      "file": "impact/sub_drop.wav",
+      "category": "impact",
+      "description": "Sub-bass drop under a reveal",
+      "duration": 1.8,
+      "sync": 0.0,
+      "lufsMomentaryMax": -18.0,
+      "truePeakDb": -16.3
+    },
+    "chime": {
+      "file": "tonal/chime.wav",
+      "category": "tonal",
+      "description": "Brand-key chord chime: info cards, tips",
+      "duration": 2.606,
+      "sync": 0.0,
+      "lufsMomentaryMax": -20.0,
+      "truePeakDb": -14.4
+    },
+    "success": {
+      "file": "tonal/success.wav",
+      "category": "tonal",
+      "description": "Rising arpeggio: wins, results, checkmarks",
+      "duration": 1.573,
+      "sync": 0.21,
+      "lufsMomentaryMax": -20.0,
+      "truePeakDb": -12.8
+    },
+    "shimmer": {
+      "file": "tonal/shimmer.wav",
+      "category": "tonal",
+      "description": "Sparkle sweetener on reveals",
+      "duration": 2.42,
+      "sync": 0.0,
+      "lufsMomentaryMax": -20.0,
+      "truePeakDb": -14.2
+    },
+    "sonic_logo": {
+      "file": "brand/sonic_logo.wav",
+      "category": "brand",
+      "description": "Brand audio signature for intro / outro",
+      "duration": 3.304,
+      "sync": 0.475,
+      "lufsMomentaryMax": -16.0,
+      "truePeakDb": -9.4
+    }
+  }
+}

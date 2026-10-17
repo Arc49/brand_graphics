@@ -1,0 +1,19 @@
+{
+  "_doc": "Each render: template id, optional name (output folder), props (override template defaults), formats.",
+  "renders": [
+    { "template": "logo_sting" },
+    { "template": "lower_third", "props": { "name": "Alex Rivera", "title": "Founder · Your Brand" } },
+    { "template": "title_card", "props": { "label": "Chapter 02", "title": "Why most videos feel amateur" } },
+    { "template": "callout", "props": { "text": "Key insight", "icon": "★" } },
+    { "name": "callout_vertical_pos", "template": "callout", "props": { "text": "Save this", "icon": "↓", "x": 0.42, "y": 0.28 }, "formats": ["vertical"] },
+    { "template": "punch_text", "props": { "text": "Stop making *boring* videos" } },
+    { "template": "stat_counter", "props": { "value": 250000, "suffix": "+", "label": "views in 30 days" } },
+    { "template": "list_reveal" },
+    { "name": "transition_bands", "template": "transition", "props": { "style": "bands" } },
+    { "name": "transition_iris", "template": "transition", "props": { "style": "iris" } },
+    { "name": "transition_slide", "template": "transition", "props": { "style": "slide", "dur": 0.8 } },
+    { "template": "cta_subscribe" },
+    { "name": "cta_follow", "template": "cta_subscribe", "props": { "label": "Follow", "doneLabel": "Following" }, "formats": ["vertical"] },
+    { "template": "end_card", "props": { "hold": 10 } }
+  ]
+}

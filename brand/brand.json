@@ -1,0 +1,119 @@
+{
+  "_status": "PLACEHOLDER — replace with real brand guidelines. Every template and sound reads from this file.",
+  "name": "Your Brand",
+  "handle": "@yourbrand",
+  "logo": "brand/logo.svg",
+  "color": {
+    "bg": "#0E0F12",
+    "surface": "#1A1C22",
+    "text": "#F5F5F7",
+    "textMuted": "#A1A4AD",
+    "accent": "#FF5A1F",
+    "accent2": "#3D7BFF",
+    "onAccent": "#0E0F12"
+  },
+  "font": {
+    "display": {
+      "family": "Inter Display",
+      "weight": 800,
+      "file": null,
+      "tracking": "-0.02em"
+    },
+    "body": {
+      "family": "Inter",
+      "weight": 500,
+      "file": null,
+      "tracking": "0em"
+    },
+    "mono": {
+      "family": "DejaVu Sans Mono",
+      "weight": 400,
+      "file": null,
+      "tracking": "0em"
+    }
+  },
+  "shape": {
+    "radius": 14,
+    "stroke": 4,
+    "safeMargin": 0.06
+  },
+  "motion": {
+    "fps": 30,
+    "personality": "Confident and smooth: fast in, soft settle, never bouncy-cartoonish.",
+    "duration": {
+      "micro": 0.18,
+      "short": 0.35,
+      "medium": 0.6,
+      "long": 0.9
+    },
+    "stagger": 0.06,
+    "ease": {
+      "enter": [
+        0.16,
+        1,
+        0.3,
+        1
+      ],
+      "exit": [
+        0.7,
+        0,
+        0.84,
+        0
+      ],
+      "move": [
+        0.65,
+        0,
+        0.35,
+        1
+      ],
+      "linear": [
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    "spring": {
+      "stiffness": 170,
+      "damping": 20,
+      "mass": 1
+    },
+    "hold": {
+      "lowerThird": 4.0,
+      "callout": 2.2,
+      "titleCard": 2.0,
+      "cta": 2.2
+    }
+  },
+  "sound": {
+    "sampleRate": 48000,
+    "bitDepth": 24,
+    "rootNote": "D",
+    "scale": "major",
+    "character": "clean",
+    "brightness": 0.6,
+    "seed": 49,
+    "loudness": {
+      "_note": "Targets are max-momentary LUFS per SFX file. Dialogue should sit around -14 LUFS integrated (YouTube/Shorts).",
+      "ui": -26,
+      "transition": -22,
+      "impact": -18,
+      "riser": -22,
+      "tonal": -20,
+      "sonicLogo": -16,
+      "truePeakCeiling": -1.0
+    }
+  },
+  "formats": {
+    "landscape": {
+      "width": 1920,
+      "height": 1080,
+      "label": "16:9 YouTube"
+    },
+    "vertical": {
+      "width": 1080,
+      "height": 1920,
+      "label": "9:16 Shorts / Reels / TikTok"
+    }
+  }
+}
