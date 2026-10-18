@@ -13,7 +13,7 @@ Templates.logo_sting = {
     const end = p.compact ? 2.0 : 3.2;
     const bg = k.el("div", "abs", root);
     Object.assign(bg.style, { inset: 0, display: p.background ? "block" : "none",
-      background: "radial-gradient(70% 60% at 50% 50%, color-mix(in srgb, var(--accent) 16%, var(--bg)), var(--bg) 70%)" });
+      background: "radial-gradient(70% 60% at 50% 50%, color-mix(in srgb, var(--brand) 16%, var(--bg)), var(--bg) 70%)" });
 
     const center = k.el("div", "abs", root);
     Object.assign(center.style, { left: "50%", top: "50%", transform: "translate(-50%,-50%)", display: "flex",
@@ -23,11 +23,11 @@ Templates.logo_sting = {
     Object.assign(markBox.style, { position: "relative", width: 200 * u + "px", height: 200 * u + "px" });
     const rings = [0, 1].map(() => {
       const r = k.el("div", "abs", markBox);
-      Object.assign(r.style, { inset: 0, borderRadius: "50%", border: `${4 * u}px solid var(--accent)` });
+      Object.assign(r.style, { inset: 0, borderRadius: "50%", border: `${4 * u}px solid var(--brand)` });
       return r;
     });
     const mark = k.el("div", "abs logo", markBox, k.logoSVG);
-    Object.assign(mark.style, { inset: 0, color: "var(--accent)" });
+    Object.assign(mark.style, { inset: 0, color: "var(--brand)" });
 
     const textBox = k.el("div", null, center);
     textBox.style.textAlign = f.vertical ? "center" : "left";
@@ -42,7 +42,7 @@ Templates.logo_sting = {
       let word = 0;
       for (const node of name.childNodes) {
         if (node.nodeType === 3) { word++; continue; }
-        if (word === wm.accentWord) node.style.color = "var(--accent)";
+        if (word === wm.accentWord) node.style.color = "var(--brand)";
       }
     }
     let tag = null;

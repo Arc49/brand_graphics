@@ -38,7 +38,8 @@ Templates.stat_counter = {
       fontSize: 118 * u + "px", color: "var(--text)", fontVariantNumeric: "tabular-nums" });
     const label = k.el("div", "body", box);
     label.textContent = p.label;
-    Object.assign(label.style, { fontSize: 40 * u + "px", color: "var(--text)", textShadow: `0 ${4 * u}px ${18 * u}px rgba(0,0,0,.5)` });
+    Object.assign(label.style, { fontSize: 40 * u + "px", color: "var(--text)", background: "var(--bg)", borderRadius: 999 + "px",
+      padding: `${10 * u}px ${30 * u}px`, marginTop: 14 * u + "px", boxShadow: `0 ${8 * u}px ${24 * u}px rgba(0,0,0,.25)` });
 
     const fmtNum = (v) => {
       const abs = Math.abs(v);

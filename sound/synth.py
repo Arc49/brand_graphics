@@ -427,6 +427,141 @@ def sonic_logo(P, rng):
     return fade_out(reverb(st, rng, 2.2, 0.22, damp=P.hz(6000)), 0.3), hit_t
 
 
+# ---------------------------------------------------------------- desktop + console UI packs
+# Original sounds in the *style* of desktop-OS alerts and handheld-console menus.
+# They are synthesised here rather than copied from Apple or Nintendo, whose
+# system sounds are copyrighted and would draw Content ID claims on published videos.
+
+def struck(freqs, amps, decays, dur, rng):
+    """Inharmonic struck-object model: sum of exponentially decaying partials."""
+    t = secs(max(dur, 7 * max(decays)))  # run until the partials are ~-60 dB, so nothing gets cut off
+    x = sum(a * np.sin(2 * np.pi * f * t + rng.uniform(0, 6)) * np.exp(-t / d) for f, a, d in zip(freqs, amps, decays))
+    return x * np.clip(t / 0.0015, 0, 1)
+
+
+def glass_ping(P, rng):
+    f0 = P.note(4, 6)
+    x = struck([f0 * r for r in (1, 2.76, 5.40, 8.93)], [1, 0.5, 0.25, 0.12], [0.55, 0.3, 0.15, 0.08], 1.2, rng)
+    return fade_out(reverb(stereo(x), rng, 1.0, 0.18, damp=9000), 0.05), 0.0
+
+
+def tink(P, rng):
+    f0 = P.note(0, 7)
+    x = struck([f0, f0 * 2.31, f0 * 3.9], [1, 0.4, 0.2], [0.07, 0.04, 0.02], 0.25, rng)
+    return fade_out(stereo(x), 0.01), 0.0
+
+
+def bubble(P, rng):
+    dur = 0.16
+    t = secs(dur)
+    f = P.note(0, 5) * 2 ** (1.3 * (t / dur) ** 0.5)  # upward chirp = bubble
+    return fade_out(stereo(osc(f, dur) * env_exp(dur, 0.002, 0.04)), 0.01), 0.0
+
+
+def bottle(P, rng):
+    dur = 0.6
+    t = secs(dur)
+    f = P.note(0, 4)
+    breath = stft_shape(rng.standard_normal(len(t)), bandpass_gain(f * 1.02, 0.08)) * 3
+    tone = osc(f * (1 + 0.004 * np.sin(2 * np.pi * 5 * t)), dur)
+    env = env_curve(dur, [(0, 0), (0.06, 1), (0.25, 0.7), (dur, 0)])
+    return fade_out(reverb(stereo((tone * 0.6 + breath * 0.5) * env), rng, 0.8, 0.15), 0.05), 0.0
+
+
+def funk(P, rng):
+    parts = []
+    for i, (d, o) in enumerate(((0, 3), (7, 3))):
+        dur = 0.16
+        t = secs(dur)
+        x = osc(P.note(d, o), dur, "saw")
+        x = stft_shape(x, lambda tt, f: 1 / np.sqrt(1 + (f / (300 + 3500 * np.exp(-tt / 0.03))) ** 4))
+        parts.append(at(stereo(saturate(x * env_exp(dur, 0.002, 0.06), 0.4)), i * 0.11))
+    return fade_out(mix(*parts), 0.01), 0.0
+
+
+def purr(P, rng):
+    dur = 0.55
+    t = secs(dur)
+    am = 0.5 + 0.5 * np.sign(np.sin(2 * np.pi * 28 * t))
+    x = lowpass(rng.standard_normal(len(t)), P.hz(600)) * am * env_curve(dur, [(0, 0), (0.03, 1), (0.4, 0.8), (dur, 0)])
+    x += osc(P.note(0, 2), dur, "tri") * 0.4 * am * env_exp(dur, 0.01, 0.25)
+    return fade_out(stereo(x), 0.03), 0.0
+
+
+def sonar(P, rng):
+    x = struck([P.note(4, 5)], [1], [0.18], 0.5, rng)
+    echoes = [at(stereo(x * g, pan), d) for d, g, pan in ((0, 1, 0), (0.28, 0.45, -0.5), (0.56, 0.22, 0.5), (0.84, 0.1, 0))]
+    return fade_out(reverb(mix(*echoes), rng, 1.4, 0.25, damp=3000), 0.1), 0.0
+
+
+def hero(P, rng):
+    dur = 0.9
+    t = secs(dur)
+    rise = 2 ** (0.5 * (1 - np.exp(-t / 0.08)) - 0.5)
+    chord = sum(osc(P.note(d, 4) * rise * (1 + det), dur, "saw") for d in (0, 2, 4) for det in (-0.004, 0.004)) / 6
+    chord = stft_shape(chord, lambda tt, f: 1 / np.sqrt(1 + (f / (500 + 4000 * np.minimum(tt / 0.25, 1))) ** 4))
+    st = widen(rng, chord * env_curve(dur, [(0, 0), (0.12, 1), (0.5, 0.8), (dur, 0)]), 0.5)
+    return fade_out(reverb(st, rng, 1.2, 0.2), 0.08), 0.12
+
+
+def snap_in(P, rng):
+    """Console controller attaching: two sharp plastic clicks with a tiny resonant body."""
+    def snap(g, f):
+        dur = 0.05
+        t = secs(dur)
+        n = highpass(rng.standard_normal(len(t)), 2500) * env_exp(dur, 0.0001, 0.0025)
+        body = osc(f, dur) * env_exp(dur, 0.0003, 0.012)
+        return stereo((n + 0.5 * body) * g)
+    return fade_out(mix(snap(1.0, 1900), at(snap(0.7, 2300), 0.045)), 0.005), 0.0
+
+
+def menu_move(P, rng, variant=0):
+    dur = 0.06
+    f = P.note(4 + 2 * variant, 6)
+    x = osc(f * (1 + 0.15 * np.exp(-secs(dur) / 0.004)), dur, "tri") * env_exp(dur, 0.0004, 0.014)
+    return fade_out(stereo(x), 0.005), 0.0
+
+
+def menu_select(P, rng):
+    a = osc(P.note(4, 5), 0.05) * env_exp(0.05, 0.001, 0.02)
+    b = osc(P.note(4, 6), 0.12) * env_exp(0.12, 0.001, 0.045)
+    return fade_out(mix(stereo(a), at(stereo(b), 0.035)), 0.01), 0.0
+
+
+def menu_back(P, rng):
+    dur = 0.12
+    t = secs(dur)
+    f = P.note(4, 6) * 2 ** (-1 * t / dur)
+    return fade_out(stereo(osc(f, dur) * env_exp(dur, 0.001, 0.04)), 0.01), 0.0
+
+
+def console_launch(P, rng):
+    notes = [(0, 5), (4, 5), (7, 5), (0, 6)]
+    parts = [at(stereo(struck([P.note(d, o), P.note(d, o) * 4.0], [1, 0.15], [0.35, 0.05], 0.6, rng), -0.3 + 0.2 * i), i * 0.045)
+             for i, (d, o) in enumerate(notes)]
+    w, _ = whoosh(P, rng, 0.5, 0.35, 600, 6000, (-0.3, 0.3), False)
+    return fade_out(reverb(mix(*parts, w * 0.35), rng, 1.0, 0.2, damp=8000), 0.05), 0.0
+
+
+def console_home(P, rng):
+    x = struck([P.note(0, 4), P.note(0, 4) * 2.0, P.note(0, 4) * 3.01], [1, 0.3, 0.1], [0.25, 0.1, 0.05], 0.6, rng)
+    return fade_out(reverb(stereo(x), rng, 0.7, 0.12), 0.03), 0.0
+
+
+def console_error(P, rng):
+    def buzz():
+        dur = 0.09
+        x = lowpass(osc(P.note(1, 3), dur, "square"), 1800) * env_curve(dur, [(0, 0), (0.005, 1), (0.07, 0.8), (dur, 0)])
+        return stereo(x * 0.7)
+    return fade_out(mix(buzz(), at(buzz(), 0.12)), 0.01), 0.0
+
+
+def toggle(P, rng, on=True):
+    c, _ = snap_in(P, rng)
+    tone = menu_select(P, rng)[0] if on else menu_back(P, rng)[0]
+    return fade_out(mix(c[: int(0.04 * SR)] * 0.8, at(tone * 0.6, 0.02)), 0.01), 0.0
+
+
 # name -> (category, loudness key, builder, description)
 def catalog(P):
     c = {}
@@ -459,6 +594,25 @@ def catalog(P):
     add("success", "tonal", "tonal", lambda r: success(P, r), "Rising arpeggio: wins, results, checkmarks")
     add("shimmer", "tonal", "tonal", lambda r: shimmer(P, r), "Sparkle sweetener on reveals")
     add("sonic_logo", "brand", "sonicLogo", lambda r: sonic_logo(P, r), "Brand audio signature for intro / outro")
+    # appended after the core set so existing sounds keep their random seeds
+    add("glass_ping", "desktop", "ui", lambda r: glass_ping(P, r), "Struck-glass alert ping (desktop-OS style)")
+    add("tink", "desktop", "ui", lambda r: tink(P, r), "Tiny metallic tink: subtle confirm")
+    add("bubble_pop", "desktop", "ui", lambda r: bubble(P, r), "Rising bubble pop: element appears")
+    add("bottle", "desktop", "ui", lambda r: bottle(P, r), "Blown-bottle tone: soft notification")
+    add("funk_bounce", "desktop", "ui", lambda r: funk(P, r), "Two-note funky pluck: playful alert")
+    add("purr", "desktop", "ui", lambda r: purr(P, r), "Low purr: drag, haptic, buzz")
+    add("sonar_ping", "desktop", "ui", lambda r: sonar(P, r), "Sonar ping with echoes: scanning / searching")
+    add("hero_rise", "desktop", "tonal", lambda r: hero(P, r), "Rising chord swell: success, unlock")
+    add("snap_in", "console", "ui", lambda r: snap_in(P, r), "Controller-attach double click (handheld-console style)")
+    add("menu_move_01", "console", "ui", lambda r: menu_move(P, r, 0), "Cursor move tick between menu items")
+    add("menu_move_02", "console", "ui", lambda r: menu_move(P, r, 1), "Cursor move tick (variant)")
+    add("menu_select", "console", "ui", lambda r: menu_select(P, r), "Bright two-step select")
+    add("menu_back", "console", "ui", lambda r: menu_back(P, r), "Down-gliding back / cancel")
+    add("console_launch", "console", "tonal", lambda r: console_launch(P, r), "App-launch arpeggio + air")
+    add("console_home", "console", "ui", lambda r: console_home(P, r), "Soft home-button bonk")
+    add("console_error", "console", "ui", lambda r: console_error(P, r), "Double buzz: wrong / myth busted")
+    add("toggle_on", "console", "ui", lambda r: toggle(P, r, True), "Switch on: click + up blip")
+    add("toggle_off", "console", "ui", lambda r: toggle(P, r, False), "Switch off: click + down blip")
     return c
 
 
@@ -477,8 +631,13 @@ def main():
     loud = brand["sound"]["loudness"]
     P = Palette(brand)
 
+    mpath = os.path.join(args.out, "sfx.json")
+    # keep entries we don't generate (imported third-party packs, or sounds skipped by --only)
+    prev = json.load(open(mpath))["sounds"] if os.path.exists(mpath) else {}
+    names = set(catalog(P))
+    keep = {k: v for k, v in prev.items() if "license" in v or (args.only and k in names)}
     manifest = {"sampleRate": SR, "bitDepth": bits, "rootNote": brand["sound"]["rootNote"],
-                "scale": brand["sound"].get("scale", "major"), "sounds": {}}
+                "scale": brand["sound"].get("scale", "major"), "sounds": keep}
     for i, (name, (cat, lkey, fn, desc)) in enumerate(catalog(P).items()):
         if args.only and name not in args.only:
             continue
@@ -493,7 +652,7 @@ def main():
             "lufsMomentaryMax": round(max_momentary_lufs(st), 1), "truePeakDb": round(true_peak_db(st), 1),
         }
         print(f"  {rel:34s} {len(st)/SR:5.2f}s  sync@{sync:4.2f}s  {manifest['sounds'][name]['lufsMomentaryMax']:6.1f} LUFS-M")
-    with open(os.path.join(args.out, "sfx.json"), "w") as f:
+    with open(mpath, "w") as f:
         json.dump(manifest, f, indent=2)
 
 

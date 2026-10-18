@@ -1,23 +1,202 @@
 {
-  "_doc": "Each render: template id, optional name (output folder), theme (dark|light, default from brand.json), props (override template defaults), formats.",
+  "_doc": "Each render: template id, theme (light|dark), optional name (output folder; default <template>_<theme>), props, formats.",
   "renders": [
-    { "template": "logo_sting" },
-    { "template": "lower_third", "props": { "name": "Alex Rivera", "title": "Founder · Visual Cranio" } },
-    { "template": "lower_third", "theme": "light", "props": { "name": "Alex Rivera", "title": "Founder · Visual Cranio" } },
-    { "template": "title_card", "props": { "label": "Myth 01", "title": "Your jawline is fixed at 18" } },
-    { "template": "title_card", "theme": "light", "props": { "label": "Myth 02", "title": "Mewing changes your skull overnight" } },
-    { "template": "callout", "props": { "text": "Bone vs. soft tissue", "icon": "⬡" } },
-    { "template": "callout", "theme": "light", "props": { "text": "Myth", "icon": "✕" } },
-    { "template": "punch_text" },
-    { "name": "punch_text_story", "template": "punch_text", "theme": "light", "props": { "background": true }, "formats": ["vertical"] },
-    { "template": "stat_counter", "props": { "value": 22, "suffix": "", "label": "bones in the human skull", "compact": false, "countDur": 1.2 } },
-    { "template": "list_reveal", "props": { "heading": "Fix these first", "items": ["Posture", "Sleep", "Body fat %"] } },
-    { "template": "list_reveal", "theme": "light", "props": { "heading": "Fix these first", "items": ["Posture", "Sleep", "Body fat %"] } },
-    { "name": "transition_bands", "template": "transition", "props": { "style": "bands" } },
-    { "name": "transition_iris", "template": "transition", "props": { "style": "iris" } },
-    { "name": "transition_slide", "template": "transition", "props": { "style": "slide", "dur": 0.8 } },
-    { "template": "cta_subscribe" },
-    { "name": "cta_follow", "template": "cta_subscribe", "theme": "light", "props": { "label": "Follow", "doneLabel": "Following" }, "formats": ["vertical"] },
-    { "template": "end_card", "props": { "hold": 10 } }
+    {
+      "template": "logo_sting",
+      "theme": "dark"
+    },
+    {
+      "template": "lower_third",
+      "props": {
+        "name": "Alex Rivera",
+        "title": "Founder · Visual Cranio"
+      },
+      "theme": "dark"
+    },
+    {
+      "template": "lower_third",
+      "theme": "light",
+      "props": {
+        "name": "Alex Rivera",
+        "title": "Founder · Visual Cranio"
+      }
+    },
+    {
+      "template": "title_card",
+      "props": {
+        "label": "Myth 01",
+        "title": "Your jawline is fixed at 18"
+      },
+      "theme": "dark"
+    },
+    {
+      "template": "title_card",
+      "theme": "light",
+      "props": {
+        "label": "Myth 02",
+        "title": "Mewing changes your skull overnight"
+      }
+    },
+    {
+      "template": "callout",
+      "props": {
+        "text": "Bone vs. soft tissue",
+        "icon": "⬡"
+      },
+      "theme": "dark"
+    },
+    {
+      "template": "callout",
+      "theme": "light",
+      "props": {
+        "text": "Myth",
+        "icon": "✕"
+      }
+    },
+    {
+      "template": "punch_text",
+      "theme": "dark"
+    },
+    {
+      "name": "punch_text_story",
+      "template": "punch_text",
+      "theme": "light",
+      "props": {
+        "background": true
+      },
+      "formats": [
+        "vertical"
+      ]
+    },
+    {
+      "template": "stat_counter",
+      "props": {
+        "value": 22,
+        "suffix": "",
+        "label": "bones in the human skull",
+        "compact": false,
+        "countDur": 1.2
+      },
+      "theme": "dark"
+    },
+    {
+      "template": "list_reveal",
+      "props": {
+        "heading": "Fix these first",
+        "items": [
+          "Posture",
+          "Sleep",
+          "Body fat %"
+        ]
+      },
+      "theme": "dark"
+    },
+    {
+      "template": "list_reveal",
+      "theme": "light",
+      "props": {
+        "heading": "Fix these first",
+        "items": [
+          "Posture",
+          "Sleep",
+          "Body fat %"
+        ]
+      }
+    },
+    {
+      "name": "transition_bands",
+      "template": "transition",
+      "props": {
+        "style": "bands"
+      },
+      "theme": "dark"
+    },
+    {
+      "name": "transition_iris",
+      "template": "transition",
+      "props": {
+        "style": "iris"
+      },
+      "theme": "dark"
+    },
+    {
+      "name": "transition_slide",
+      "template": "transition",
+      "props": {
+        "style": "slide",
+        "dur": 0.8
+      },
+      "theme": "dark"
+    },
+    {
+      "template": "cta_subscribe",
+      "theme": "dark"
+    },
+    {
+      "name": "cta_follow",
+      "template": "cta_subscribe",
+      "theme": "light",
+      "props": {
+        "label": "Follow",
+        "doneLabel": "Following"
+      },
+      "formats": [
+        "vertical"
+      ]
+    },
+    {
+      "template": "end_card",
+      "props": {
+        "hold": 10
+      },
+      "theme": "dark"
+    },
+    {
+      "template": "logo_sting",
+      "theme": "light"
+    },
+    {
+      "template": "punch_text",
+      "theme": "light"
+    },
+    {
+      "template": "stat_counter",
+      "theme": "light",
+      "props": {
+        "value": 22,
+        "suffix": "",
+        "label": "bones in the human skull",
+        "compact": false,
+        "countDur": 1.2
+      }
+    },
+    {
+      "template": "cta_subscribe",
+      "theme": "light"
+    },
+    {
+      "template": "end_card",
+      "theme": "light",
+      "props": {
+        "hold": 10
+      }
+    },
+    {
+      "name": "transition_bands_light",
+      "template": "transition",
+      "theme": "light",
+      "props": {
+        "style": "bands"
+      }
+    },
+    {
+      "name": "transition_slide_light",
+      "template": "transition",
+      "theme": "light",
+      "props": {
+        "style": "slide",
+        "dur": 0.8
+      }
+    }
   ]
 }

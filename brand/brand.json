@@ -8,7 +8,7 @@
     "tracking": "0.14em",
     "accentWord": 0
   },
-  "theme": "dark",
+  "theme": "light",
   "themes": {
     "dark": {
       "_ref": "Visual Cranio app UI",
@@ -22,7 +22,8 @@
       "stroke": "#2A2A2A",
       "highlight": "#14B886",
       "action": "#14B886",
-      "onAction": "#03140E"
+      "onAction": "#03140E",
+      "brand": "#14B886"
     },
     "light": {
       "_ref": "Clean white story",
@@ -36,7 +37,8 @@
       "stroke": "#E2E2E2",
       "highlight": "#E0473A",
       "action": "#3DA35D",
-      "onAction": "#FFFFFF"
+      "onAction": "#FFFFFF",
+      "brand": "#3DA35D"
     }
   },
   "font": {

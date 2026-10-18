@@ -6,10 +6,13 @@ whole look and sound changes together.
 
 - **10 motion templates**: logo sting, lower third, chapter card, callout, punch text
   (hook), stat counter, list reveal, transitions (3 styles), subscribe/follow CTA, end card
-- **2 themes**: `dark` (app UI: black and emerald) and `light` (clean white story: black type,
-  red highlight, green action)
-- **31 sound effects**, synthesised and tuned to the brand key: whooshes, risers, impacts,
-  UI clicks/pops/ticks, chimes and a **sonic logo**. Loudness is normalised per category.
+- **2 themes**: `light` (**default**, clean white story: black type, red highlight, green
+  action) and `dark` (app UI: black and emerald)
+- **200 sound effects** in `library/sfx/`, all loudness-normalised per category:
+  - 31 core brand sounds tuned to the brand key: whooshes, risers, impacts, clicks/pops/ticks,
+    chimes and a **sonic logo**
+  - 18 original **desktop-OS style** (`desktop/`) and **handheld-console style** (`console/`) UI sounds
+  - 151 recorded CC0 UI sounds from Kenney (`kenney_interface/`, `kenney_ui/`); see `library/sfx/THIRD_PARTY.md`
 - Every overlay ships with its **SFX already synced** to the motion (sample-accurate)
 - Exports for any editor: **ProRes 4444 + alpha** (`.mov`), **VP9 + alpha** (`.webm`),
   a standalone `_sfx.wav`, a review `_preview.mp4` and a poster `.png`
@@ -19,7 +22,7 @@ whole look and sound changes together.
 ## Quick start
 
 ```bash
-npm run sfx                      # regenerate the SFX library   → library/sfx/
+npm run sfx                      # regenerate the synthesised SFX → library/sfx/ (keeps imported packs)
 npm run library                  # render WebM/WAV/preview kit   → library/overlays/
 npm run render                   # full render incl. ProRes .mov → out/
 npm run preview                  # gallery at /preview/, live player at /motion/stage.html

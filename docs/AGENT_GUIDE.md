@@ -59,7 +59,7 @@ sfx_start = event_time − sfx.sync
 ```bash
 node render/render.mjs --template lower_third --name lt_sam \
   --props '{"name":"Sam Lee","title":"Head of Growth"}' --formats landscape,vertical
-# add --theme light|dark (default: brand.json "theme")
+# add --theme light|dark (default: brand.json "theme" = light); auto names are <template>_<theme>
 # add --fast to skip ProRes (WebM + WAV + preview only; much faster)
 # add --out library/overlays to add it to the committed library
 ```
@@ -90,7 +90,7 @@ number. `list_reveal.times` = each item's word timestamp minus the clip start.
   "video": "episode_12_main.mp4",
   "format": "landscape",
   "placements": [
-    { "asset": "logo_sting_landscape", "event": "hook ends", "event_time": 11.40, "clip_start": 10.93 },
+    { "asset": "logo_sting_light_landscape", "event": "hook ends", "event_time": 11.40, "clip_start": 10.93 },
     { "asset": "lt_sam_landscape", "event": "Sam's first line", "event_time": 14.02, "clip_start": 14.02 },
     { "asset": "stat_revenue_landscape", "event": "'…three hundred thousand'", "event_time": 96.80, "clip_start": 94.80 },
     { "sfx": "whoosh_long_01", "event": "B-roll cut", "event_time": 131.00, "start": 130.40 }

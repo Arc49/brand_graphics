@@ -13,14 +13,14 @@ Templates.end_card = {
     Object.assign(bg.style, { inset: 0, background: "var(--bg)" });
     const glow = k.el("div", "abs", root);
     Object.assign(glow.style, { width: 1400 * u + "px", height: 1400 * u + "px", borderRadius: "50%",
-      background: "radial-gradient(closest-side, color-mix(in srgb, var(--accent) 22%, transparent), transparent)" });
+      background: "radial-gradient(closest-side, color-mix(in srgb, var(--brand) 22%, transparent), transparent)" });
 
     const head = k.el("div", "display abs", root);
     head.textContent = p.heading || (f.vertical ? "Follow for more" : "Watch next");
     const sub = k.el("div", "body abs", root);
     sub.textContent = p.sub || k.brand.handle;
     const mark = k.el("div", "abs logo", root, k.logoSVG);
-    mark.style.color = "var(--accent)";
+    mark.style.color = "var(--brand)";
 
     const slots = [];
     if (f.vertical) {

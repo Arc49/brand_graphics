@@ -14,7 +14,8 @@ These are the rules that make the videos feel like one brand. The tokens live in
 | Background | `#0A0A0A` | `#FFFFFF` |
 | Surface | `#161616` | `#F1F1F1` |
 | Text / muted | `#FFFFFF` / `#8C8C8C` | `#111111` / `#5C5C5C` |
-| Accent (brand mark, rings, lines) | emerald `#14B886` | red `#E0473A` |
+| Brand (logo mark, wordmark accent) | emerald `#14B886` | green `#3DA35D` |
+| Accent (rings, lines, glows) | emerald `#14B886` | red `#E0473A` |
 | Highlight (the *one* key word) | emerald `#14B886` | red `#E0473A` |
 | Action (buttons, "Tap through →", checks) | emerald `#14B886` | green `#3DA35D` |
 
@@ -27,9 +28,9 @@ the accent colour (**VISUAL** CRANIO).
 A sub-line can end in an *action* phrase in the action colour plus an arrow that
 nudges.
 
-**When to use which theme:** `dark` for long-form, app and product content, and
-over footage. `light` for story and carousel-style Shorts frames (`punch_text`
-with `background: true`) and educational list content.
+**Default theme: `light`** (the clean white story look). Use `dark` for app and
+product content (screen recordings of the app, the logo intro on footage), or
+whenever a white card would clash with dark footage.
 
 ---
 
@@ -128,6 +129,15 @@ down if needed, but don't push one above its tier.
 | `impact` | `impact_soft`, `impact_hard`, `sub_drop` | titles landing, big statements |
 | `ui` | `click_01-03`, `pop_01-03`, `tick_01-03`, `blip_up/down`, `typing_01` | callouts, counters, lists, CTA |
 | `tonal` | `chime`, `success`, `shimmer` | tips, results, sweeteners |
+| `desktop` | `glass_ping`, `tink`, `bubble_pop`, `bottle`, `funk_bounce`, `purr`, `sonar_ping`, `hero_rise` | desktop-OS style alerts: notifications, app/UI screen recordings, soft confirms |
+| `console` | `snap_in`, `menu_move_01-02`, `menu_select`, `menu_back`, `console_launch`, `console_home`, `console_error`, `toggle_on/off` | handheld-console menu style: list navigation, tap-through stories, "myth busted" (`console_error`) |
+| `kenney_interface` | 100 recorded UI sounds (`ki_click_*`, `ki_glass_*`, `ki_select_*`, `ki_error_*`, `ki_maximize_*`…) | CC0. Extra variety for clicks, opens/closes, toggles, errors |
+| `kenney_ui` | 51 recorded clicks, rollovers and switches (`kui_*`) | CC0. Mechanical switches and mouse clicks |
+
+`desktop` and `console` are original synthesised sounds *in the style of* those
+systems, tuned to the brand key. The real Apple and Nintendo sounds are
+copyrighted and aren't in the library. See `library/sfx/THIRD_PARTY.md`. To add
+another pack with a commercial-use licence, run `sound/import_pack.py`.
 
 ---
 

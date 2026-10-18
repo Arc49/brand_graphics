@@ -94,7 +94,7 @@ async function mixAudio(items, lead, outWav) {
 async function renderOne(page, base, job, fmtKey, opts) {
   const brand = JSON.parse(fs.readFileSync(path.join(ROOT, "brand/brand.json"), "utf8"));
   const theme = job.theme || opts.theme || brand.theme;
-  const base_ = (job.name || job.template) + (!job.name && theme !== brand.theme ? `_${theme}` : "");
+  const base_ = job.name || `${job.template}_${theme}`;
   const name = `${base_}_${fmtKey}`;
   const dir = path.join(opts.out, base_);
   fs.mkdirSync(dir, { recursive: true });
@@ -191,6 +191,7 @@ async function main() {
   const page = await browser.newPage({ deviceScaleFactor: 1 });
   page.on("pageerror", (e) => console.error("  page error:", e.message));
 
+  const brandTheme = JSON.parse(fs.readFileSync(path.join(ROOT, "brand/brand.json"), "utf8")).theme;
   const manifestPath = path.join(opts.out, "manifest.json");
   const manifest = fs.existsSync(manifestPath) ? JSON.parse(fs.readFileSync(manifestPath, "utf8")) : { assets: {} };
   const save = () => {
@@ -202,8 +203,8 @@ async function main() {
   try {
     for (const job of jobs) {
       for (const fk of fmtOverride || job.formats || ["landscape", "vertical"]) {
-        const done = Object.values(manifest.assets).find((e) => e.template === job.template && e.format === fk &&
-          e.dir === (job.name || job.template) + (!job.name && job.theme && job.theme !== JSON.parse(fs.readFileSync(path.join(ROOT, "brand/brand.json"), "utf8")).theme ? `_${job.theme}` : ""));
+        const th = job.theme || opts.theme || brandTheme;
+        const done = Object.values(manifest.assets).find((e) => e.format === fk && e.dir === (job.name || `${job.template}_${th}`));
         if (a.resume && done && fs.existsSync(path.join(opts.out, done.dir, done.files.webm))) { console.log(`  · ${done.id} (kept)`); continue; }
         const entry = await renderOne(page, base, job, fk, opts);
         manifest.assets[entry.id] = entry;
