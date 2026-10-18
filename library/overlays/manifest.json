@@ -1,7 +1,7 @@
 {
   "assets": {
-    "logo_sting_landscape": {
-      "id": "logo_sting_landscape",
+    "logo_sting_dark_landscape": {
+      "id": "logo_sting_dark_landscape",
       "template": "logo_sting",
       "templateName": "Logo sting (intro)",
       "category": "identity",
@@ -12,12 +12,12 @@
       "fps": 30,
       "duration": 3.233,
       "leadIn": 0,
-      "dir": "logo_sting",
+      "dir": "logo_sting_dark",
       "files": {
-        "webm": "logo_sting_landscape.webm",
-        "preview": "logo_sting_landscape_preview.mp4",
-        "poster": "logo_sting_landscape.png",
-        "wav": "logo_sting_landscape_sfx.wav"
+        "webm": "logo_sting_dark_landscape.webm",
+        "preview": "logo_sting_dark_landscape_preview.mp4",
+        "poster": "logo_sting_dark_landscape.png",
+        "wav": "logo_sting_dark_landscape_sfx.wav"
       },
       "props": {
         "name": null,
@@ -39,8 +39,8 @@
       "description": "Brand mark + name reveal locked to the sonic logo. The opening signature of every video.",
       "usage": "Right after the cold-open hook (5–20s in) in long-form; skip in Shorts or use the 'compact' variant at the end. Always with sonic_logo."
     },
-    "logo_sting_vertical": {
-      "id": "logo_sting_vertical",
+    "logo_sting_dark_vertical": {
+      "id": "logo_sting_dark_vertical",
       "template": "logo_sting",
       "templateName": "Logo sting (intro)",
       "category": "identity",
@@ -51,12 +51,12 @@
       "fps": 30,
       "duration": 3.233,
       "leadIn": 0,
-      "dir": "logo_sting",
+      "dir": "logo_sting_dark",
       "files": {
-        "webm": "logo_sting_vertical.webm",
-        "preview": "logo_sting_vertical_preview.mp4",
-        "poster": "logo_sting_vertical.png",
-        "wav": "logo_sting_vertical_sfx.wav"
+        "webm": "logo_sting_dark_vertical.webm",
+        "preview": "logo_sting_dark_vertical_preview.mp4",
+        "poster": "logo_sting_dark_vertical.png",
+        "wav": "logo_sting_dark_vertical_sfx.wav"
       },
       "props": {
         "name": null,
@@ -78,8 +78,8 @@
       "description": "Brand mark + name reveal locked to the sonic logo. The opening signature of every video.",
       "usage": "Right after the cold-open hook (5–20s in) in long-form; skip in Shorts or use the 'compact' variant at the end. Always with sonic_logo."
     },
-    "lower_third_landscape": {
-      "id": "lower_third_landscape",
+    "lower_third_dark_landscape": {
+      "id": "lower_third_dark_landscape",
       "template": "lower_third",
       "templateName": "Lower third",
       "category": "identity",
@@ -90,12 +90,12 @@
       "fps": 30,
       "duration": 5.433,
       "leadIn": 0,
-      "dir": "lower_third",
+      "dir": "lower_third_dark",
       "files": {
-        "webm": "lower_third_landscape.webm",
-        "preview": "lower_third_landscape_preview.mp4",
-        "poster": "lower_third_landscape.png",
-        "wav": "lower_third_landscape_sfx.wav"
+        "webm": "lower_third_dark_landscape.webm",
+        "preview": "lower_third_dark_landscape_preview.mp4",
+        "poster": "lower_third_dark_landscape.png",
+        "wav": "lower_third_dark_landscape_sfx.wav"
       },
       "props": {
         "name": "Alex Rivera",
@@ -126,8 +126,8 @@
       "description": "Name + role tag that introduces a speaker or guest.",
       "usage": "First appearance of each speaker, within their first 3s on screen. Never over another graphic. Max once per speaker per video."
     },
-    "lower_third_vertical": {
-      "id": "lower_third_vertical",
+    "lower_third_dark_vertical": {
+      "id": "lower_third_dark_vertical",
       "template": "lower_third",
       "templateName": "Lower third",
       "category": "identity",
@@ -138,12 +138,12 @@
       "fps": 30,
       "duration": 5.433,
       "leadIn": 0,
-      "dir": "lower_third",
+      "dir": "lower_third_dark",
       "files": {
-        "webm": "lower_third_vertical.webm",
-        "preview": "lower_third_vertical_preview.mp4",
-        "poster": "lower_third_vertical.png",
-        "wav": "lower_third_vertical_sfx.wav"
+        "webm": "lower_third_dark_vertical.webm",
+        "preview": "lower_third_dark_vertical_preview.mp4",
+        "poster": "lower_third_dark_vertical.png",
+        "wav": "lower_third_dark_vertical_sfx.wav"
       },
       "props": {
         "name": "Alex Rivera",
@@ -270,8 +270,8 @@
       "description": "Name + role tag that introduces a speaker or guest.",
       "usage": "First appearance of each speaker, within their first 3s on screen. Never over another graphic. Max once per speaker per video."
     },
-    "title_card_landscape": {
-      "id": "title_card_landscape",
+    "title_card_dark_landscape": {
+      "id": "title_card_dark_landscape",
       "template": "title_card",
       "templateName": "Chapter / title card",
       "category": "structure",
@@ -282,12 +282,12 @@
       "fps": 30,
       "duration": 3.633,
       "leadIn": 0,
-      "dir": "title_card",
+      "dir": "title_card_dark",
       "files": {
-        "webm": "title_card_landscape.webm",
-        "preview": "title_card_landscape_preview.mp4",
-        "poster": "title_card_landscape.png",
-        "wav": "title_card_landscape_sfx.wav"
+        "webm": "title_card_dark_landscape.webm",
+        "preview": "title_card_dark_landscape_preview.mp4",
+        "poster": "title_card_dark_landscape.png",
+        "wav": "title_card_dark_landscape_sfx.wav"
       },
       "props": {
         "label": "Myth 01",
@@ -319,8 +319,8 @@
       "description": "Full-screen section card: chapter number + title. Use as a hard topic change.",
       "usage": "At each major topic change in long-form (every ~2–4 min). Cut to it on the sentence before the new topic; the card covers the cut."
     },
-    "title_card_vertical": {
-      "id": "title_card_vertical",
+    "title_card_dark_vertical": {
+      "id": "title_card_dark_vertical",
       "template": "title_card",
       "templateName": "Chapter / title card",
       "category": "structure",
@@ -331,12 +331,12 @@
       "fps": 30,
       "duration": 3.633,
       "leadIn": 0,
-      "dir": "title_card",
+      "dir": "title_card_dark",
       "files": {
-        "webm": "title_card_vertical.webm",
-        "preview": "title_card_vertical_preview.mp4",
-        "poster": "title_card_vertical.png",
-        "wav": "title_card_vertical_sfx.wav"
+        "webm": "title_card_dark_vertical.webm",
+        "preview": "title_card_dark_vertical_preview.mp4",
+        "poster": "title_card_dark_vertical.png",
+        "wav": "title_card_dark_vertical_sfx.wav"
       },
       "props": {
         "label": "Myth 01",
@@ -466,8 +466,8 @@
       "description": "Full-screen section card: chapter number + title. Use as a hard topic change.",
       "usage": "At each major topic change in long-form (every ~2–4 min). Cut to it on the sentence before the new topic; the card covers the cut."
     },
-    "callout_landscape": {
-      "id": "callout_landscape",
+    "callout_dark_landscape": {
+      "id": "callout_dark_landscape",
       "template": "callout",
       "templateName": "Callout / keyword pop",
       "category": "emphasis",
@@ -478,12 +478,12 @@
       "fps": 30,
       "duration": 3.1,
       "leadIn": 0,
-      "dir": "callout",
+      "dir": "callout_dark",
       "files": {
-        "webm": "callout_landscape.webm",
-        "preview": "callout_landscape_preview.mp4",
-        "poster": "callout_landscape.png",
-        "wav": "callout_landscape_sfx.wav"
+        "webm": "callout_dark_landscape.webm",
+        "preview": "callout_dark_landscape_preview.mp4",
+        "poster": "callout_dark_landscape.png",
+        "wav": "callout_dark_landscape_sfx.wav"
       },
       "props": {
         "text": "Bone vs. soft tissue",
@@ -512,8 +512,8 @@
       "description": "Small pill that pops in to highlight a keyword, tip or number next to the speaker.",
       "usage": "On the exact word being emphasised. Max one every ~8s; keep text to 1–4 words. Place opposite the speaker's face."
     },
-    "callout_vertical": {
-      "id": "callout_vertical",
+    "callout_dark_vertical": {
+      "id": "callout_dark_vertical",
       "template": "callout",
       "templateName": "Callout / keyword pop",
       "category": "emphasis",
@@ -524,12 +524,12 @@
       "fps": 30,
       "duration": 3.1,
       "leadIn": 0,
-      "dir": "callout",
+      "dir": "callout_dark",
       "files": {
-        "webm": "callout_vertical.webm",
-        "preview": "callout_vertical_preview.mp4",
-        "poster": "callout_vertical.png",
-        "wav": "callout_vertical_sfx.wav"
+        "webm": "callout_dark_vertical.webm",
+        "preview": "callout_dark_vertical_preview.mp4",
+        "poster": "callout_dark_vertical.png",
+        "wav": "callout_dark_vertical_sfx.wav"
       },
       "props": {
         "text": "Bone vs. soft tissue",
@@ -650,8 +650,8 @@
       "description": "Small pill that pops in to highlight a keyword, tip or number next to the speaker.",
       "usage": "On the exact word being emphasised. Max one every ~8s; keep text to 1–4 words. Place opposite the speaker's face."
     },
-    "punch_text_landscape": {
-      "id": "punch_text_landscape",
+    "punch_text_dark_landscape": {
+      "id": "punch_text_dark_landscape",
       "template": "punch_text",
       "templateName": "Punch text (hook)",
       "category": "emphasis",
@@ -662,12 +662,12 @@
       "fps": 30,
       "duration": 3.9,
       "leadIn": 0,
-      "dir": "punch_text",
+      "dir": "punch_text_dark",
       "files": {
-        "webm": "punch_text_landscape.webm",
-        "preview": "punch_text_landscape_preview.mp4",
-        "poster": "punch_text_landscape.png",
-        "wav": "punch_text_landscape_sfx.wav"
+        "webm": "punch_text_dark_landscape.webm",
+        "preview": "punch_text_dark_landscape_preview.mp4",
+        "poster": "punch_text_dark_landscape.png",
+        "wav": "punch_text_dark_landscape_sfx.wav"
       },
       "props": {
         "text": "5 glow-up *myths* keeping you average.",
@@ -733,8 +733,8 @@
       "description": "Big statement that builds word by word. *Stars* mark the highlight word; `sub` adds a smaller line with an *action* phrase and arrow.",
       "usage": "Hooks in the first 2s of Shorts / story frames, and big statements in long-form. One per section; 3–8 words."
     },
-    "punch_text_vertical": {
-      "id": "punch_text_vertical",
+    "punch_text_dark_vertical": {
+      "id": "punch_text_dark_vertical",
       "template": "punch_text",
       "templateName": "Punch text (hook)",
       "category": "emphasis",
@@ -745,12 +745,12 @@
       "fps": 30,
       "duration": 3.9,
       "leadIn": 0,
-      "dir": "punch_text",
+      "dir": "punch_text_dark",
       "files": {
-        "webm": "punch_text_vertical.webm",
-        "preview": "punch_text_vertical_preview.mp4",
-        "poster": "punch_text_vertical.png",
-        "wav": "punch_text_vertical_sfx.wav"
+        "webm": "punch_text_dark_vertical.webm",
+        "preview": "punch_text_dark_vertical_preview.mp4",
+        "poster": "punch_text_dark_vertical.png",
+        "wav": "punch_text_dark_vertical_sfx.wav"
       },
       "props": {
         "text": "5 glow-up *myths* keeping you average.",
@@ -899,8 +899,8 @@
       "description": "Big statement that builds word by word. *Stars* mark the highlight word; `sub` adds a smaller line with an *action* phrase and arrow.",
       "usage": "Hooks in the first 2s of Shorts / story frames, and big statements in long-form. One per section; 3–8 words."
     },
-    "stat_counter_landscape": {
-      "id": "stat_counter_landscape",
+    "stat_counter_dark_landscape": {
+      "id": "stat_counter_dark_landscape",
       "template": "stat_counter",
       "templateName": "Stat counter",
       "category": "data",
@@ -911,12 +911,12 @@
       "fps": 30,
       "duration": 4.1,
       "leadIn": 0.2,
-      "dir": "stat_counter",
+      "dir": "stat_counter_dark",
       "files": {
-        "webm": "stat_counter_landscape.webm",
-        "preview": "stat_counter_landscape_preview.mp4",
-        "poster": "stat_counter_landscape.png",
-        "wav": "stat_counter_landscape_sfx.wav"
+        "webm": "stat_counter_dark_landscape.webm",
+        "preview": "stat_counter_dark_landscape_preview.mp4",
+        "poster": "stat_counter_dark_landscape.png",
+        "wav": "stat_counter_dark_landscape_sfx.wav"
       },
       "props": {
         "value": 22,
@@ -994,8 +994,8 @@
       "description": "A number that counts up with a progress ring and label — for results, metrics, money.",
       "usage": "When stating a number that matters. Let the count finish on the spoken number. One stat at a time."
     },
-    "stat_counter_vertical": {
-      "id": "stat_counter_vertical",
+    "stat_counter_dark_vertical": {
+      "id": "stat_counter_dark_vertical",
       "template": "stat_counter",
       "templateName": "Stat counter",
       "category": "data",
@@ -1006,12 +1006,12 @@
       "fps": 30,
       "duration": 4.1,
       "leadIn": 0.2,
-      "dir": "stat_counter",
+      "dir": "stat_counter_dark",
       "files": {
-        "webm": "stat_counter_vertical.webm",
-        "preview": "stat_counter_vertical_preview.mp4",
-        "poster": "stat_counter_vertical.png",
-        "wav": "stat_counter_vertical_sfx.wav"
+        "webm": "stat_counter_dark_vertical.webm",
+        "preview": "stat_counter_dark_vertical_preview.mp4",
+        "poster": "stat_counter_dark_vertical.png",
+        "wav": "stat_counter_dark_vertical_sfx.wav"
       },
       "props": {
         "value": 22,
@@ -1089,8 +1089,8 @@
       "description": "A number that counts up with a progress ring and label — for results, metrics, money.",
       "usage": "When stating a number that matters. Let the count finish on the spoken number. One stat at a time."
     },
-    "list_reveal_landscape": {
-      "id": "list_reveal_landscape",
+    "list_reveal_dark_landscape": {
+      "id": "list_reveal_dark_landscape",
       "template": "list_reveal",
       "templateName": "List / checklist reveal",
       "category": "data",
@@ -1101,12 +1101,12 @@
       "fps": 30,
       "duration": 4.933,
       "leadIn": 0.2,
-      "dir": "list_reveal",
+      "dir": "list_reveal_dark",
       "files": {
-        "webm": "list_reveal_landscape.webm",
-        "preview": "list_reveal_landscape_preview.mp4",
-        "poster": "list_reveal_landscape.png",
-        "wav": "list_reveal_landscape_sfx.wav"
+        "webm": "list_reveal_dark_landscape.webm",
+        "preview": "list_reveal_dark_landscape_preview.mp4",
+        "poster": "list_reveal_dark_landscape.png",
+        "wav": "list_reveal_dark_landscape_sfx.wav"
       },
       "props": {
         "heading": "Fix these first",
@@ -1169,8 +1169,8 @@
       "description": "Heading plus items that tick in one at a time — steps, tips, agenda, takeaways.",
       "usage": "When the speaker enumerates points. Time each item's tick to when it is spoken (set `times`), or use the even `gap`. 3–5 items."
     },
-    "list_reveal_vertical": {
-      "id": "list_reveal_vertical",
+    "list_reveal_dark_vertical": {
+      "id": "list_reveal_dark_vertical",
       "template": "list_reveal",
       "templateName": "List / checklist reveal",
       "category": "data",
@@ -1181,12 +1181,12 @@
       "fps": 30,
       "duration": 4.933,
       "leadIn": 0.2,
-      "dir": "list_reveal",
+      "dir": "list_reveal_dark",
       "files": {
-        "webm": "list_reveal_vertical.webm",
-        "preview": "list_reveal_vertical_preview.mp4",
-        "poster": "list_reveal_vertical.png",
-        "wav": "list_reveal_vertical_sfx.wav"
+        "webm": "list_reveal_dark_vertical.webm",
+        "preview": "list_reveal_dark_vertical_preview.mp4",
+        "poster": "list_reveal_dark_vertical.png",
+        "wav": "list_reveal_dark_vertical_sfx.wav"
       },
       "props": {
         "heading": "Fix these first",
@@ -1641,8 +1641,8 @@
       "description": "Full-frame branded wipe. The frame is fully covered at the cut point (half-way), so the cut hides underneath.",
       "usage": "Place so its midpoint sits exactly on the cut between scenes/topics. Use sparingly: max one per ~45s in long-form, ~10s in Shorts. Never on a jump cut inside a sentence."
     },
-    "cta_subscribe_landscape": {
-      "id": "cta_subscribe_landscape",
+    "cta_subscribe_dark_landscape": {
+      "id": "cta_subscribe_dark_landscape",
       "template": "cta_subscribe",
       "templateName": "Subscribe / follow CTA",
       "category": "cta",
@@ -1653,12 +1653,12 @@
       "fps": 30,
       "duration": 4.1,
       "leadIn": 0.1,
-      "dir": "cta_subscribe",
+      "dir": "cta_subscribe_dark",
       "files": {
-        "webm": "cta_subscribe_landscape.webm",
-        "preview": "cta_subscribe_landscape_preview.mp4",
-        "poster": "cta_subscribe_landscape.png",
-        "wav": "cta_subscribe_landscape_sfx.wav"
+        "webm": "cta_subscribe_dark_landscape.webm",
+        "preview": "cta_subscribe_dark_landscape_preview.mp4",
+        "poster": "cta_subscribe_dark_landscape.png",
+        "wav": "cta_subscribe_dark_landscape_sfx.wav"
       },
       "props": {
         "label": "Subscribe",
@@ -1699,8 +1699,8 @@
       "description": "Button slides in, a cursor clicks it, it flips to the confirmed state and the bell rings.",
       "usage": "Once in long-form, right after the first payoff (~30–90s in), not at the start. In Shorts use label 'Follow' near the end."
     },
-    "cta_subscribe_vertical": {
-      "id": "cta_subscribe_vertical",
+    "cta_subscribe_dark_vertical": {
+      "id": "cta_subscribe_dark_vertical",
       "template": "cta_subscribe",
       "templateName": "Subscribe / follow CTA",
       "category": "cta",
@@ -1711,12 +1711,12 @@
       "fps": 30,
       "duration": 4.1,
       "leadIn": 0.1,
-      "dir": "cta_subscribe",
+      "dir": "cta_subscribe_dark",
       "files": {
-        "webm": "cta_subscribe_vertical.webm",
-        "preview": "cta_subscribe_vertical_preview.mp4",
-        "poster": "cta_subscribe_vertical.png",
-        "wav": "cta_subscribe_vertical_sfx.wav"
+        "webm": "cta_subscribe_dark_vertical.webm",
+        "preview": "cta_subscribe_dark_vertical_preview.mp4",
+        "poster": "cta_subscribe_dark_vertical.png",
+        "wav": "cta_subscribe_dark_vertical_sfx.wav"
       },
       "props": {
         "label": "Subscribe",
@@ -1815,8 +1815,8 @@
       "description": "Button slides in, a cursor clicks it, it flips to the confirmed state and the bell rings.",
       "usage": "Once in long-form, right after the first payoff (~30–90s in), not at the start. In Shorts use label 'Follow' near the end."
     },
-    "end_card_landscape": {
-      "id": "end_card_landscape",
+    "end_card_dark_landscape": {
+      "id": "end_card_dark_landscape",
       "template": "end_card",
       "templateName": "End card / outro",
       "category": "cta",
@@ -1827,12 +1827,12 @@
       "fps": 30,
       "duration": 11.733,
       "leadIn": 0.3,
-      "dir": "end_card",
+      "dir": "end_card_dark",
       "files": {
-        "webm": "end_card_landscape.webm",
-        "preview": "end_card_landscape_preview.mp4",
-        "poster": "end_card_landscape.png",
-        "wav": "end_card_landscape_sfx.wav"
+        "webm": "end_card_dark_landscape.webm",
+        "preview": "end_card_dark_landscape_preview.mp4",
+        "poster": "end_card_dark_landscape.png",
+        "wav": "end_card_dark_landscape_sfx.wav"
       },
       "props": {
         "heading": null,
@@ -1859,8 +1859,8 @@
       "description": "Closing screen. Landscape leaves exact slots for YouTube end-screen elements; vertical shows a follow prompt.",
       "usage": "Last 5–20s of long-form (YouTube end screens need ≥5s). In Shorts use 1.5–3s or skip — Shorts loop."
     },
-    "end_card_vertical": {
-      "id": "end_card_vertical",
+    "end_card_dark_vertical": {
+      "id": "end_card_dark_vertical",
       "template": "end_card",
       "templateName": "End card / outro",
       "category": "cta",
@@ -1871,12 +1871,12 @@
       "fps": 30,
       "duration": 11.733,
       "leadIn": 0.3,
-      "dir": "end_card",
+      "dir": "end_card_dark",
       "files": {
-        "webm": "end_card_vertical.webm",
-        "preview": "end_card_vertical_preview.mp4",
-        "poster": "end_card_vertical.png",
-        "wav": "end_card_vertical_sfx.wav"
+        "webm": "end_card_dark_vertical.webm",
+        "preview": "end_card_dark_vertical_preview.mp4",
+        "poster": "end_card_dark_vertical.png",
+        "wav": "end_card_dark_vertical_sfx.wav"
       },
       "props": {
         "heading": null,
@@ -1902,8 +1902,794 @@
       ],
       "description": "Closing screen. Landscape leaves exact slots for YouTube end-screen elements; vertical shows a follow prompt.",
       "usage": "Last 5–20s of long-form (YouTube end screens need ≥5s). In Shorts use 1.5–3s or skip — Shorts loop."
+    },
+    "logo_sting_light_landscape": {
+      "id": "logo_sting_light_landscape",
+      "template": "logo_sting",
+      "templateName": "Logo sting (intro)",
+      "category": "identity",
+      "format": "landscape",
+      "theme": "light",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "duration": 3.233,
+      "leadIn": 0,
+      "dir": "logo_sting_light",
+      "files": {
+        "webm": "logo_sting_light_landscape.webm",
+        "preview": "logo_sting_light_landscape_preview.mp4",
+        "poster": "logo_sting_light_landscape.png",
+        "wav": "logo_sting_light_landscape_sfx.wav"
+      },
+      "props": {
+        "name": null,
+        "tagline": null,
+        "background": true,
+        "compact": false
+      },
+      "anchor": {
+        "t": 0.47,
+        "event": "end of the cold-open hook (hard cut)"
+      },
+      "cues": [
+        {
+          "sfx": "sonic_logo",
+          "at": 0.47,
+          "gain": 0
+        }
+      ],
+      "description": "Brand mark + name reveal locked to the sonic logo. The opening signature of every video.",
+      "usage": "Right after the cold-open hook (5–20s in) in long-form; skip in Shorts or use the 'compact' variant at the end. Always with sonic_logo."
+    },
+    "logo_sting_light_vertical": {
+      "id": "logo_sting_light_vertical",
+      "template": "logo_sting",
+      "templateName": "Logo sting (intro)",
+      "category": "identity",
+      "format": "vertical",
+      "theme": "light",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "duration": 3.233,
+      "leadIn": 0,
+      "dir": "logo_sting_light",
+      "files": {
+        "webm": "logo_sting_light_vertical.webm",
+        "preview": "logo_sting_light_vertical_preview.mp4",
+        "poster": "logo_sting_light_vertical.png",
+        "wav": "logo_sting_light_vertical_sfx.wav"
+      },
+      "props": {
+        "name": null,
+        "tagline": null,
+        "background": true,
+        "compact": false
+      },
+      "anchor": {
+        "t": 0.47,
+        "event": "end of the cold-open hook (hard cut)"
+      },
+      "cues": [
+        {
+          "sfx": "sonic_logo",
+          "at": 0.47,
+          "gain": 0
+        }
+      ],
+      "description": "Brand mark + name reveal locked to the sonic logo. The opening signature of every video.",
+      "usage": "Right after the cold-open hook (5–20s in) in long-form; skip in Shorts or use the 'compact' variant at the end. Always with sonic_logo."
+    },
+    "punch_text_light_landscape": {
+      "id": "punch_text_light_landscape",
+      "template": "punch_text",
+      "templateName": "Punch text (hook)",
+      "category": "emphasis",
+      "format": "landscape",
+      "theme": "light",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "duration": 3.9,
+      "leadIn": 0,
+      "dir": "punch_text_light",
+      "files": {
+        "webm": "punch_text_light_landscape.webm",
+        "preview": "punch_text_light_landscape_preview.mp4",
+        "poster": "punch_text_light_landscape.png",
+        "wav": "punch_text_light_landscape_sfx.wav"
+      },
+      "props": {
+        "text": "5 glow-up *myths* keeping you average.",
+        "sub": "Let's fix that. *Tap through* →",
+        "wordGap": 0.16,
+        "hold": 1.8,
+        "anim": "rise",
+        "align": null,
+        "background": false,
+        "scrim": true
+      },
+      "anchor": {
+        "t": 0.1,
+        "event": "first word of the statement is spoken"
+      },
+      "cues": [
+        {
+          "sfx": "click_01",
+          "at": 0.1,
+          "gain": -6
+        },
+        {
+          "sfx": "click_02",
+          "at": 0.26,
+          "gain": -6
+        },
+        {
+          "sfx": "impact_soft",
+          "at": 0.42,
+          "gain": -3
+        },
+        {
+          "sfx": "click_01",
+          "at": 0.58,
+          "gain": -6
+        },
+        {
+          "sfx": "click_02",
+          "at": 0.74,
+          "gain": -6
+        },
+        {
+          "sfx": "click_03",
+          "at": 0.9,
+          "gain": -6
+        },
+        {
+          "sfx": "swish_01",
+          "at": 1.31,
+          "gain": -4
+        },
+        {
+          "sfx": "blip_up",
+          "at": 1.71,
+          "gain": -8
+        },
+        {
+          "sfx": "whoosh_short_03",
+          "at": 3.51,
+          "gain": -4
+        }
+      ],
+      "description": "Big statement that builds word by word. *Stars* mark the highlight word; `sub` adds a smaller line with an *action* phrase and arrow.",
+      "usage": "Hooks in the first 2s of Shorts / story frames, and big statements in long-form. One per section; 3–8 words."
+    },
+    "punch_text_light_vertical": {
+      "id": "punch_text_light_vertical",
+      "template": "punch_text",
+      "templateName": "Punch text (hook)",
+      "category": "emphasis",
+      "format": "vertical",
+      "theme": "light",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "duration": 3.9,
+      "leadIn": 0,
+      "dir": "punch_text_light",
+      "files": {
+        "webm": "punch_text_light_vertical.webm",
+        "preview": "punch_text_light_vertical_preview.mp4",
+        "poster": "punch_text_light_vertical.png",
+        "wav": "punch_text_light_vertical_sfx.wav"
+      },
+      "props": {
+        "text": "5 glow-up *myths* keeping you average.",
+        "sub": "Let's fix that. *Tap through* →",
+        "wordGap": 0.16,
+        "hold": 1.8,
+        "anim": "rise",
+        "align": null,
+        "background": false,
+        "scrim": true
+      },
+      "anchor": {
+        "t": 0.1,
+        "event": "first word of the statement is spoken"
+      },
+      "cues": [
+        {
+          "sfx": "click_01",
+          "at": 0.1,
+          "gain": -6
+        },
+        {
+          "sfx": "click_02",
+          "at": 0.26,
+          "gain": -6
+        },
+        {
+          "sfx": "impact_soft",
+          "at": 0.42,
+          "gain": -3
+        },
+        {
+          "sfx": "click_01",
+          "at": 0.58,
+          "gain": -6
+        },
+        {
+          "sfx": "click_02",
+          "at": 0.74,
+          "gain": -6
+        },
+        {
+          "sfx": "click_03",
+          "at": 0.9,
+          "gain": -6
+        },
+        {
+          "sfx": "swish_01",
+          "at": 1.31,
+          "gain": -4
+        },
+        {
+          "sfx": "blip_up",
+          "at": 1.71,
+          "gain": -8
+        },
+        {
+          "sfx": "whoosh_short_03",
+          "at": 3.51,
+          "gain": -4
+        }
+      ],
+      "description": "Big statement that builds word by word. *Stars* mark the highlight word; `sub` adds a smaller line with an *action* phrase and arrow.",
+      "usage": "Hooks in the first 2s of Shorts / story frames, and big statements in long-form. One per section; 3–8 words."
+    },
+    "stat_counter_light_landscape": {
+      "id": "stat_counter_light_landscape",
+      "template": "stat_counter",
+      "templateName": "Stat counter",
+      "category": "data",
+      "format": "landscape",
+      "theme": "light",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "duration": 4.1,
+      "leadIn": 0.2,
+      "dir": "stat_counter_light",
+      "files": {
+        "webm": "stat_counter_light_landscape.webm",
+        "preview": "stat_counter_light_landscape_preview.mp4",
+        "poster": "stat_counter_light_landscape.png",
+        "wav": "stat_counter_light_landscape_sfx.wav"
+      },
+      "props": {
+        "value": 22,
+        "prefix": "",
+        "suffix": "",
+        "decimals": 0,
+        "label": "bones in the human skull",
+        "countDur": 1.2,
+        "hold": 1.8,
+        "x": 0.5,
+        "y": 0.5,
+        "compact": false
+      },
+      "anchor": {
+        "t": 1.8,
+        "event": "the number is spoken (count lands on it)"
+      },
+      "cues": [
+        {
+          "sfx": "whoosh_short_02",
+          "at": 0.25,
+          "gain": -4
+        },
+        {
+          "sfx": "tick_01",
+          "at": 0.674,
+          "gain": -2
+        },
+        {
+          "sfx": "tick_02",
+          "at": 0.751,
+          "gain": -2
+        },
+        {
+          "sfx": "tick_03",
+          "at": 0.833,
+          "gain": -2
+        },
+        {
+          "sfx": "tick_01",
+          "at": 0.921,
+          "gain": -2
+        },
+        {
+          "sfx": "tick_02",
+          "at": 1.016,
+          "gain": -2
+        },
+        {
+          "sfx": "tick_03",
+          "at": 1.121,
+          "gain": -2
+        },
+        {
+          "sfx": "tick_01",
+          "at": 1.242,
+          "gain": -2
+        },
+        {
+          "sfx": "tick_02",
+          "at": 1.391,
+          "gain": -2
+        },
+        {
+          "sfx": "success",
+          "at": 1.8,
+          "gain": -2
+        },
+        {
+          "sfx": "swish_01",
+          "at": 3.6,
+          "gain": -6
+        }
+      ],
+      "description": "A number that counts up with a progress ring and label — for results, metrics, money.",
+      "usage": "When stating a number that matters. Let the count finish on the spoken number. One stat at a time."
+    },
+    "stat_counter_light_vertical": {
+      "id": "stat_counter_light_vertical",
+      "template": "stat_counter",
+      "templateName": "Stat counter",
+      "category": "data",
+      "format": "vertical",
+      "theme": "light",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "duration": 4.1,
+      "leadIn": 0.2,
+      "dir": "stat_counter_light",
+      "files": {
+        "webm": "stat_counter_light_vertical.webm",
+        "preview": "stat_counter_light_vertical_preview.mp4",
+        "poster": "stat_counter_light_vertical.png",
+        "wav": "stat_counter_light_vertical_sfx.wav"
+      },
+      "props": {
+        "value": 22,
+        "prefix": "",
+        "suffix": "",
+        "decimals": 0,
+        "label": "bones in the human skull",
+        "countDur": 1.2,
+        "hold": 1.8,
+        "x": 0.5,
+        "y": 0.5,
+        "compact": false
+      },
+      "anchor": {
+        "t": 1.8,
+        "event": "the number is spoken (count lands on it)"
+      },
+      "cues": [
+        {
+          "sfx": "whoosh_short_02",
+          "at": 0.25,
+          "gain": -4
+        },
+        {
+          "sfx": "tick_01",
+          "at": 0.674,
+          "gain": -2
+        },
+        {
+          "sfx": "tick_02",
+          "at": 0.751,
+          "gain": -2
+        },
+        {
+          "sfx": "tick_03",
+          "at": 0.833,
+          "gain": -2
+        },
+        {
+          "sfx": "tick_01",
+          "at": 0.921,
+          "gain": -2
+        },
+        {
+          "sfx": "tick_02",
+          "at": 1.016,
+          "gain": -2
+        },
+        {
+          "sfx": "tick_03",
+          "at": 1.121,
+          "gain": -2
+        },
+        {
+          "sfx": "tick_01",
+          "at": 1.242,
+          "gain": -2
+        },
+        {
+          "sfx": "tick_02",
+          "at": 1.391,
+          "gain": -2
+        },
+        {
+          "sfx": "success",
+          "at": 1.8,
+          "gain": -2
+        },
+        {
+          "sfx": "swish_01",
+          "at": 3.6,
+          "gain": -6
+        }
+      ],
+      "description": "A number that counts up with a progress ring and label — for results, metrics, money.",
+      "usage": "When stating a number that matters. Let the count finish on the spoken number. One stat at a time."
+    },
+    "cta_subscribe_light_landscape": {
+      "id": "cta_subscribe_light_landscape",
+      "template": "cta_subscribe",
+      "templateName": "Subscribe / follow CTA",
+      "category": "cta",
+      "format": "landscape",
+      "theme": "light",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "duration": 4.1,
+      "leadIn": 0.1,
+      "dir": "cta_subscribe_light",
+      "files": {
+        "webm": "cta_subscribe_light_landscape.webm",
+        "preview": "cta_subscribe_light_landscape_preview.mp4",
+        "poster": "cta_subscribe_light_landscape.png",
+        "wav": "cta_subscribe_light_landscape_sfx.wav"
+      },
+      "props": {
+        "label": "Subscribe",
+        "doneLabel": "Subscribed",
+        "hold": null
+      },
+      "anchor": {
+        "t": 1.35,
+        "event": "the click lands as the speaker says 'subscribe'/'follow'"
+      },
+      "cues": [
+        {
+          "sfx": "whoosh_short_01",
+          "at": 0.25,
+          "gain": -4
+        },
+        {
+          "sfx": "click_02",
+          "at": 1.35,
+          "gain": 2
+        },
+        {
+          "sfx": "blip_up",
+          "at": 1.4,
+          "gain": 0
+        },
+        {
+          "sfx": "shimmer",
+          "at": 1.65,
+          "gain": -10
+        },
+        {
+          "sfx": "swish_01",
+          "at": 3.6,
+          "gain": -6
+        }
+      ],
+      "description": "Button slides in, a cursor clicks it, it flips to the confirmed state and the bell rings.",
+      "usage": "Once in long-form, right after the first payoff (~30–90s in), not at the start. In Shorts use label 'Follow' near the end."
+    },
+    "cta_subscribe_light_vertical": {
+      "id": "cta_subscribe_light_vertical",
+      "template": "cta_subscribe",
+      "templateName": "Subscribe / follow CTA",
+      "category": "cta",
+      "format": "vertical",
+      "theme": "light",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "duration": 4.1,
+      "leadIn": 0.1,
+      "dir": "cta_subscribe_light",
+      "files": {
+        "webm": "cta_subscribe_light_vertical.webm",
+        "preview": "cta_subscribe_light_vertical_preview.mp4",
+        "poster": "cta_subscribe_light_vertical.png",
+        "wav": "cta_subscribe_light_vertical_sfx.wav"
+      },
+      "props": {
+        "label": "Subscribe",
+        "doneLabel": "Subscribed",
+        "hold": null
+      },
+      "anchor": {
+        "t": 1.35,
+        "event": "the click lands as the speaker says 'subscribe'/'follow'"
+      },
+      "cues": [
+        {
+          "sfx": "whoosh_short_01",
+          "at": 0.25,
+          "gain": -4
+        },
+        {
+          "sfx": "click_02",
+          "at": 1.35,
+          "gain": 2
+        },
+        {
+          "sfx": "blip_up",
+          "at": 1.4,
+          "gain": 0
+        },
+        {
+          "sfx": "shimmer",
+          "at": 1.65,
+          "gain": -10
+        },
+        {
+          "sfx": "swish_01",
+          "at": 3.6,
+          "gain": -6
+        }
+      ],
+      "description": "Button slides in, a cursor clicks it, it flips to the confirmed state and the bell rings.",
+      "usage": "Once in long-form, right after the first payoff (~30–90s in), not at the start. In Shorts use label 'Follow' near the end."
+    },
+    "end_card_light_landscape": {
+      "id": "end_card_light_landscape",
+      "template": "end_card",
+      "templateName": "End card / outro",
+      "category": "cta",
+      "format": "landscape",
+      "theme": "light",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "duration": 11.733,
+      "leadIn": 0.3,
+      "dir": "end_card_light",
+      "files": {
+        "webm": "end_card_light_landscape.webm",
+        "preview": "end_card_light_landscape_preview.mp4",
+        "poster": "end_card_light_landscape.png",
+        "wav": "end_card_light_landscape_sfx.wav"
+      },
+      "props": {
+        "heading": null,
+        "sub": null,
+        "hold": 10,
+        "placeholders": true
+      },
+      "anchor": {
+        "t": 0.3,
+        "event": "last spoken line ends"
+      },
+      "cues": [
+        {
+          "sfx": "whoosh_long_01",
+          "at": 0.6,
+          "gain": -3
+        },
+        {
+          "sfx": "chime",
+          "at": 1.25,
+          "gain": -2
+        }
+      ],
+      "description": "Closing screen. Landscape leaves exact slots for YouTube end-screen elements; vertical shows a follow prompt.",
+      "usage": "Last 5–20s of long-form (YouTube end screens need ≥5s). In Shorts use 1.5–3s or skip — Shorts loop."
+    },
+    "end_card_light_vertical": {
+      "id": "end_card_light_vertical",
+      "template": "end_card",
+      "templateName": "End card / outro",
+      "category": "cta",
+      "format": "vertical",
+      "theme": "light",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "duration": 11.733,
+      "leadIn": 0.3,
+      "dir": "end_card_light",
+      "files": {
+        "webm": "end_card_light_vertical.webm",
+        "preview": "end_card_light_vertical_preview.mp4",
+        "poster": "end_card_light_vertical.png",
+        "wav": "end_card_light_vertical_sfx.wav"
+      },
+      "props": {
+        "heading": null,
+        "sub": null,
+        "hold": 10,
+        "placeholders": true
+      },
+      "anchor": {
+        "t": 0.3,
+        "event": "last spoken line ends"
+      },
+      "cues": [
+        {
+          "sfx": "whoosh_long_01",
+          "at": 0.6,
+          "gain": -3
+        },
+        {
+          "sfx": "chime",
+          "at": 1.25,
+          "gain": -2
+        }
+      ],
+      "description": "Closing screen. Landscape leaves exact slots for YouTube end-screen elements; vertical shows a follow prompt.",
+      "usage": "Last 5–20s of long-form (YouTube end screens need ≥5s). In Shorts use 1.5–3s or skip — Shorts loop."
+    },
+    "transition_bands_light_landscape": {
+      "id": "transition_bands_light_landscape",
+      "template": "transition",
+      "templateName": "Transition wipe",
+      "category": "transition",
+      "format": "landscape",
+      "theme": "light",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "duration": 1.133,
+      "leadIn": 0.1,
+      "dir": "transition_bands_light",
+      "files": {
+        "webm": "transition_bands_light_landscape.webm",
+        "preview": "transition_bands_light_landscape_preview.mp4",
+        "poster": "transition_bands_light_landscape.png",
+        "wav": "transition_bands_light_landscape_sfx.wav"
+      },
+      "props": {
+        "style": "bands",
+        "dur": 1
+      },
+      "anchor": {
+        "t": 0.6,
+        "event": "the cut between the two shots"
+      },
+      "cues": [
+        {
+          "sfx": "whoosh_long_01",
+          "at": 0.6,
+          "gain": 0
+        }
+      ],
+      "description": "Full-frame branded wipe. The frame is fully covered at the cut point (half-way), so the cut hides underneath.",
+      "usage": "Place so its midpoint sits exactly on the cut between scenes/topics. Use sparingly: max one per ~45s in long-form, ~10s in Shorts. Never on a jump cut inside a sentence."
+    },
+    "transition_bands_light_vertical": {
+      "id": "transition_bands_light_vertical",
+      "template": "transition",
+      "templateName": "Transition wipe",
+      "category": "transition",
+      "format": "vertical",
+      "theme": "light",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "duration": 1.133,
+      "leadIn": 0.1,
+      "dir": "transition_bands_light",
+      "files": {
+        "webm": "transition_bands_light_vertical.webm",
+        "preview": "transition_bands_light_vertical_preview.mp4",
+        "poster": "transition_bands_light_vertical.png",
+        "wav": "transition_bands_light_vertical_sfx.wav"
+      },
+      "props": {
+        "style": "bands",
+        "dur": 1
+      },
+      "anchor": {
+        "t": 0.6,
+        "event": "the cut between the two shots"
+      },
+      "cues": [
+        {
+          "sfx": "whoosh_long_01",
+          "at": 0.6,
+          "gain": 0
+        }
+      ],
+      "description": "Full-frame branded wipe. The frame is fully covered at the cut point (half-way), so the cut hides underneath.",
+      "usage": "Place so its midpoint sits exactly on the cut between scenes/topics. Use sparingly: max one per ~45s in long-form, ~10s in Shorts. Never on a jump cut inside a sentence."
+    },
+    "transition_slide_light_landscape": {
+      "id": "transition_slide_light_landscape",
+      "template": "transition",
+      "templateName": "Transition wipe",
+      "category": "transition",
+      "format": "landscape",
+      "theme": "light",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "duration": 1,
+      "leadIn": 0.167,
+      "dir": "transition_slide_light",
+      "files": {
+        "webm": "transition_slide_light_landscape.webm",
+        "preview": "transition_slide_light_landscape_preview.mp4",
+        "poster": "transition_slide_light_landscape.png",
+        "wav": "transition_slide_light_landscape_sfx.wav"
+      },
+      "props": {
+        "style": "slide",
+        "dur": 0.8
+      },
+      "anchor": {
+        "t": 0.567,
+        "event": "the cut between the two shots"
+      },
+      "cues": [
+        {
+          "sfx": "whoosh_long_02",
+          "at": 0.567,
+          "gain": 0
+        }
+      ],
+      "description": "Full-frame branded wipe. The frame is fully covered at the cut point (half-way), so the cut hides underneath.",
+      "usage": "Place so its midpoint sits exactly on the cut between scenes/topics. Use sparingly: max one per ~45s in long-form, ~10s in Shorts. Never on a jump cut inside a sentence."
+    },
+    "transition_slide_light_vertical": {
+      "id": "transition_slide_light_vertical",
+      "template": "transition",
+      "templateName": "Transition wipe",
+      "category": "transition",
+      "format": "vertical",
+      "theme": "light",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "duration": 1,
+      "leadIn": 0.167,
+      "dir": "transition_slide_light",
+      "files": {
+        "webm": "transition_slide_light_vertical.webm",
+        "preview": "transition_slide_light_vertical_preview.mp4",
+        "poster": "transition_slide_light_vertical.png",
+        "wav": "transition_slide_light_vertical_sfx.wav"
+      },
+      "props": {
+        "style": "slide",
+        "dur": 0.8
+      },
+      "anchor": {
+        "t": 0.567,
+        "event": "the cut between the two shots"
+      },
+      "cues": [
+        {
+          "sfx": "whoosh_long_02",
+          "at": 0.567,
+          "gain": 0
+        }
+      ],
+      "description": "Full-frame branded wipe. The frame is fully covered at the cut point (half-way), so the cut hides underneath.",
+      "usage": "Place so its midpoint sits exactly on the cut between scenes/topics. Use sparingly: max one per ~45s in long-form, ~10s in Shorts. Never on a jump cut inside a sentence."
     }
   },
-  "generated": "2026-10-17T15:50:54.522Z",
+  "generated": "2026-10-18T07:52:18.481Z",
   "brand": "Visual Cranio"
 }
