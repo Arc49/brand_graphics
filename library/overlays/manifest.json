@@ -2688,8 +2688,174 @@
       ],
       "description": "Full-frame branded wipe. The frame is fully covered at the cut point (half-way), so the cut hides underneath.",
       "usage": "Place so its midpoint sits exactly on the cut between scenes/topics. Use sparingly: max one per ~45s in long-form, ~10s in Shorts. Never on a jump cut inside a sentence."
+    },
+    "punch_text_story_dark_vertical": {
+      "id": "punch_text_story_dark_vertical",
+      "template": "punch_text",
+      "templateName": "Punch text (hook)",
+      "category": "emphasis",
+      "format": "vertical",
+      "theme": "dark",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "duration": 3.9,
+      "leadIn": 0,
+      "dir": "punch_text_story_dark",
+      "files": {
+        "webm": "punch_text_story_dark_vertical.webm",
+        "preview": "punch_text_story_dark_vertical_preview.mp4",
+        "poster": "punch_text_story_dark_vertical.png",
+        "wav": "punch_text_story_dark_vertical_sfx.wav"
+      },
+      "props": {
+        "text": "5 glow-up *myths* keeping you average.",
+        "sub": "Let's fix that. *Tap through* →",
+        "wordGap": 0.16,
+        "hold": 1.8,
+        "anim": "rise",
+        "align": null,
+        "background": true,
+        "scrim": true
+      },
+      "anchor": {
+        "t": 0.1,
+        "event": "first word of the statement is spoken"
+      },
+      "cues": [
+        {
+          "sfx": "click_01",
+          "at": 0.1,
+          "gain": -6
+        },
+        {
+          "sfx": "click_02",
+          "at": 0.26,
+          "gain": -6
+        },
+        {
+          "sfx": "impact_soft",
+          "at": 0.42,
+          "gain": -3
+        },
+        {
+          "sfx": "click_01",
+          "at": 0.58,
+          "gain": -6
+        },
+        {
+          "sfx": "click_02",
+          "at": 0.74,
+          "gain": -6
+        },
+        {
+          "sfx": "click_03",
+          "at": 0.9,
+          "gain": -6
+        },
+        {
+          "sfx": "swish_01",
+          "at": 1.31,
+          "gain": -4
+        },
+        {
+          "sfx": "blip_up",
+          "at": 1.71,
+          "gain": -8
+        },
+        {
+          "sfx": "whoosh_short_03",
+          "at": 3.51,
+          "gain": -4
+        }
+      ],
+      "description": "Big statement that builds word by word. *Stars* mark the highlight word; `sub` adds a smaller line with an *action* phrase and arrow.",
+      "usage": "Hooks in the first 2s of Shorts / story frames, and big statements in long-form. One per section; 3–8 words."
+    },
+    "punch_text_story_dark_landscape": {
+      "id": "punch_text_story_dark_landscape",
+      "template": "punch_text",
+      "templateName": "Punch text (hook)",
+      "category": "emphasis",
+      "format": "landscape",
+      "theme": "dark",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "duration": 3.9,
+      "leadIn": 0,
+      "dir": "punch_text_story_dark",
+      "files": {
+        "webm": "punch_text_story_dark_landscape.webm",
+        "preview": "punch_text_story_dark_landscape_preview.mp4",
+        "poster": "punch_text_story_dark_landscape.png",
+        "wav": "punch_text_story_dark_landscape_sfx.wav"
+      },
+      "props": {
+        "text": "5 glow-up *myths* keeping you average.",
+        "sub": "Let's fix that. *Tap through* →",
+        "wordGap": 0.16,
+        "hold": 1.8,
+        "anim": "rise",
+        "align": null,
+        "background": true,
+        "scrim": true
+      },
+      "anchor": {
+        "t": 0.1,
+        "event": "first word of the statement is spoken"
+      },
+      "cues": [
+        {
+          "sfx": "click_01",
+          "at": 0.1,
+          "gain": -6
+        },
+        {
+          "sfx": "click_02",
+          "at": 0.26,
+          "gain": -6
+        },
+        {
+          "sfx": "impact_soft",
+          "at": 0.42,
+          "gain": -3
+        },
+        {
+          "sfx": "click_01",
+          "at": 0.58,
+          "gain": -6
+        },
+        {
+          "sfx": "click_02",
+          "at": 0.74,
+          "gain": -6
+        },
+        {
+          "sfx": "click_03",
+          "at": 0.9,
+          "gain": -6
+        },
+        {
+          "sfx": "swish_01",
+          "at": 1.31,
+          "gain": -4
+        },
+        {
+          "sfx": "blip_up",
+          "at": 1.71,
+          "gain": -8
+        },
+        {
+          "sfx": "whoosh_short_03",
+          "at": 3.51,
+          "gain": -4
+        }
+      ],
+      "description": "Big statement that builds word by word. *Stars* mark the highlight word; `sub` adds a smaller line with an *action* phrase and arrow.",
+      "usage": "Hooks in the first 2s of Shorts / story frames, and big statements in long-form. One per section; 3–8 words."
     }
   },
-  "generated": "2026-10-18T07:52:18.481Z",
+  "generated": "2026-10-21T21:26:20.809Z",
   "brand": "Visual Cranio"
 }

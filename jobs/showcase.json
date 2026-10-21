@@ -69,6 +69,18 @@
       ]
     },
     {
+      "name": "punch_text_story_dark",
+      "template": "punch_text",
+      "theme": "dark",
+      "props": {
+        "background": true
+      },
+      "formats": [
+        "vertical",
+        "landscape"
+      ]
+    },
+    {
       "template": "stat_counter",
       "props": {
         "value": 22,
