@@ -19,3 +19,24 @@ python3 flame_sound.py --out out
 python3 animate_flames.py baddi3st_logo.jpg --out out --size 1920x1080 --audio out/baddi3st_fire_loop.wav
 # opzioni: --seconds 8  --strength 1.4 (fiamme più mosse)  --embers 120  --keep-black
 ```
+
+## Reveal del logo (`logo_reveal.py`)
+
+Animazione da 10 s, trasparente, con sound design sincronizzato:
+
+| Tempo | Cosa succede | Suono |
+|---|---|---|
+| 0,35–1,75 s | B, A, D, D, I, 3, S, T arrivano una alla volta e si **spiaccicano** contro il muro (schiacciamento, flash, onda d'urto, scintille, tremolio) | colpo metallico per ogni lettera, nota che sale lettera dopo lettera |
+| 2,25 s | **C/S** compatto si spiaccica, colpo più forte; l'onda d'urto fa apparire gli ornamenti | riser + colpo grande + sub, "shing" metallico |
+| 2,45 s | le **fiamme** partono da C/S e si allargano verso l'esterno | accensione + fuoco continuo |
+| 3,55–4,45 s | la **corona** cade girando e si posa | ronzio di rotazione + rintocco |
+| 5,4 s → | la corona **gira** su se stessa (un giro ogni 2,6 s) | fruscio ad ogni giro + "tink" quando torna di fronte |
+
+File in `export/`: `baddi3st_reveal.webm` (trasparente + audio), `baddi3st_reveal_preview_black.mp4`,
+`baddi3st_reveal_preview_checker.mp4`, `baddi3st_reveal_sfx.wav`.
+Il master ProRes 4444 (~1,3 GB) si rigenera con:
+
+```bash
+python3 logo_reveal.py baddi3st_logo.jpg --out out_reveal
+# tempi e durate: costanti T_LETTERS, T_CS, T_FIRE, T_CROWN_* in cima allo script
+```
