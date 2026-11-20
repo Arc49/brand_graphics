@@ -2,13 +2,14 @@
 """BADDI3ST C/S logo reveal (transparent background) with sound design.
 
 Sequence
-  1. B-A-D-D-I-3-S-T fly in one at a time and SLAM into the "wall": squash, flash,
+  1. B-A-D-D-I-3-S-T (still grey/silver chrome) fly in one at a time and SLAM into the "wall": squash, flash,
      shockwave ring, sparks, camera shake, metal slam sound (pitch rises per letter).
   2. C/S slams in as one compact block: bigger hit; the shockwave reveals the
      chrome ornaments.
-  3. Flames ignite FROM C/S and spread outwards (no fire before this point).
-  4. The crown drops in spinning, lands, then keeps turning (360° every 2.6 s, short hold
-     facing front).
+  3. Flames ignite FROM C/S and spread outwards (no fire before this point); the pink colour
+     spreads with them across letters and ornaments, with a hot bright front.
+  4. The 3D crown (crown3d/: procedural chrome model rendered with Three.js) drops in
+     spinning, lands, then keeps turning on its axis (360° every 2.6 s, short hold facing front).
 
 The still logo is cut into layers (letters, C/S, crown, ornaments, flames) by
 geometry plus the chrome mask from animate_flames.py; the flames reuse its
@@ -86,10 +87,55 @@ def ease_inout(x):
     return x * x * (3 - 2 * x)
 
 
+class Crown3D:
+    """Pre-rendered 3D turntable (crown3d/render.mjs) placed where the logo's crown sits."""
+
+    def __init__(self, frames_dir, s, step=2, band_w=415, front_bottom=(800, 305), top_limit=8):
+        import json
+        anchors = json.load(open(os.path.join(os.path.dirname(frames_dir), "anchors.json")))
+        self.dir, self.step = frames_dir, step
+        # scale: as wide as the logo's crown band, but never taller than the space above the letters
+        top = min(np.nonzero(np.asarray(Image.open(os.path.join(frames_dir, f"a{a:03d}.png")))[..., 3].max(1) > 10)[0].min()
+                  for a in range(0, 360, 10))
+        k_w = band_w * s / (anchors["right"][0] - anchors["left"][0])
+        k_h = (front_bottom[1] - top_limit) * s / (anchors["frontBottom"][1] - top)
+        self.k = min(k_w, k_h)
+        self.anchor = np.array(anchors["frontBottom"], float) * self.k
+        self.target = np.array(front_bottom, float) * s
+        self.center = self.target + np.array([0, -150 * s])
+        self.cache = {}
+        self.s = s
+
+    def _img(self, idx):
+        if idx not in self.cache:
+            im = Image.open(os.path.join(self.dir, f"a{idx * self.step:03d}.png")).convert("RGBA")
+            im = im.resize((int(im.width * self.k), int(im.height * self.k)), Image.LANCZOS)
+            a = np.asarray(im).astype(np.float32) / 255
+            rgb, al = a[..., :3], a[..., 3]
+            # pink bloom behind the chrome, like the glow in the logo
+            g = np.clip(A.blur(al * rgb.max(-1), 9 * self.s) * 1.3, 0, 0.75)
+            pink = np.array([1.0, 0.25, 0.75], np.float32)
+            oa = al + g * (1 - al)
+            orgb = (rgb * al[..., None] + pink * (g * (1 - al))[..., None]) / np.maximum(oa, 1e-4)[..., None]
+            self.cache[idx] = np.dstack([orgb, oa])
+        return self.cache[idx]
+
+    def render(self, theta, offset=(0, 0), flash=0.0, opacity=1.0):
+        n = 360 // self.step
+        idx = int(round(np.degrees(theta) % 360 / self.step)) % n
+        a = self._img(idx)
+        if flash > 0.001 or opacity < 0.999:
+            a = a.copy()
+            a[..., :3] = a[..., :3] + (1 - a[..., :3]) * flash
+            a[..., 3] *= opacity
+        im = Image.fromarray((np.clip(a, 0, 1) * 255 + 0.5).astype(np.uint8), "RGBA")
+        return im, self.target - self.anchor + np.array(offset, float)
+
+
 class Layer:
     """A static RGBA crop of one element, with its centre in full-frame coords."""
 
-    def __init__(self, rgba, name):
+    def __init__(self, rgba, name, grey=None):
         a = rgba[..., 3]
         ys, xs = np.nonzero(a > 0.02)
         self.name = name
@@ -102,17 +148,34 @@ class Layer:
         x0, x1 = max(xs.min() - pad, 0), min(xs.max() + pad + 1, rgba.shape[1])
         crop = rgba[y0:y1, x0:x1]
         self.arr = crop  # float, straight alpha
+        self.arr_grey = (grey if grey is not None else to_grey(rgba))[y0:y1, x0:x1]
         self.img = Image.fromarray((np.clip(crop, 0, 1) * 255 + 0.5).astype(np.uint8), "RGBA")
+        self.img_grey = Image.fromarray((np.clip(self.arr_grey, 0, 1) * 255 + 0.5).astype(np.uint8), "RGBA")
+        self.box = (y0, y1, x0, x1)
         self.origin = np.array([x0, y0], float)
         w = crop[..., 3]
         gy, gx = np.mgrid[0:crop.shape[0], 0:crop.shape[1]]
         self.center = np.array([(gx * w).sum() / w.sum() + x0, (gy * w).sum() / w.sum() + y0])
 
-    def render(self, sx=1.0, sy=1.0, offset=(0, 0), flash=0.0, opacity=1.0, mirror=False, shade=1.0):
-        """Return (PIL image, top-left position) after scaling about the centre."""
-        w, h = self.img.size
+    def render(self, sx=1.0, sy=1.0, offset=(0, 0), flash=0.0, opacity=1.0, mirror=False, shade=1.0, pink=None):
+        """Return (PIL image, top-left position) after scaling about the centre.
+
+        pink: None/1 = original pink chrome, 0 = grey chrome, or (mask, front) full-frame arrays
+        for the pink colour spreading across the element."""
+        if pink is None or (np.isscalar(pink) and pink >= 1):
+            src = self.img
+        elif np.isscalar(pink):
+            src = self.img_grey
+        else:
+            y0, y1, x0, x1 = self.box
+            m = pink[0][y0:y1, x0:x1, None]
+            fr = pink[1][y0:y1, x0:x1, None]
+            a = self.arr_grey * (1 - m) + self.arr * m
+            a[..., :3] = a[..., :3] + (1 - a[..., :3]) * fr * 0.8
+            src = Image.fromarray((np.clip(a, 0, 1) * 255 + 0.5).astype(np.uint8), "RGBA")
+        w, h = src.size
         nw, nh = max(1, int(round(w * sx))), max(1, int(round(h * sy)))
-        im = self.img if (nw, nh) == (w, h) else self.img.resize((nw, nh), Image.BICUBIC)
+        im = src if (nw, nh) == (w, h) else src.resize((nw, nh), Image.BICUBIC)
         if mirror:
             im = ImageOps.mirror(im)
         if flash > 0.001 or opacity < 0.999 or shade < 0.999:
@@ -123,6 +186,21 @@ class Layer:
             im = Image.fromarray((np.clip(np.dstack([rgb, al]), 0, 1) * 255 + 0.5).astype(np.uint8), "RGBA")
         pos = self.center + (self.origin - self.center) * np.array([sx, sy]) + np.array(offset, float)
         return im, pos
+
+
+def to_grey(rgba, solid=None):
+    """Pink chrome -> neutral silver chrome (a touch more contrast, cool tint).
+
+    solid: optional 0..1 map; the soft pink glow (not solid metal) is hidden in the grey phase."""
+    rgb = rgba[..., :3]
+    lum = 0.2126 * rgb[..., 0] + 0.7152 * rgb[..., 1] + 0.0722 * rgb[..., 2]
+    lum = np.maximum(lum, rgb.max(-1) * 0.55)  # pink highlights would read too dark otherwise
+    g = np.clip((lum - 0.5) * 1.15 + 0.5, 0, 1)
+    out = rgba.copy()
+    out[..., :3] = g[..., None] * np.array([0.93, 0.95, 1.0], np.float32)
+    if solid is not None:
+        out[..., 3] *= solid
+    return out
 
 
 def paste(canvas, im, pos):
@@ -212,17 +290,31 @@ def main():
     used = crown_m | cs_m | np.any(letter_ms, axis=0)
     orn_m = ~used
 
+    # "solid" metal vs soft magenta glow: glow pixels are hidden until the pink arrives
+    # metal has crisp edges everywhere; flame wisps (even their pale hot cores) are soft
+    lum = A.blur(0.2126 * im[..., 0] + 0.7152 * im[..., 1] + 0.0722 * im[..., 2], 1.0)
+    gy_, gx_ = np.gradient(lum)
+    crisp = smoothstep(0.055, 0.09, A.blur(np.hypot(gx_, gy_), 2.0))
+    solid = np.clip(A.blur(A.maxf(crisp, 17), 2.0) * 1.3, 0, 1)
+    chrome_grey = to_grey(chrome, solid)
+
     def layer(mask, name):
         m = A.blur(mask.astype(np.float32), 0.8)
         rgba = chrome.copy()
         rgba[..., 3] *= m
-        return Layer(rgba, name)
+        grey = chrome_grey.copy()
+        grey[..., 3] *= m
+        return Layer(rgba, name, grey)
 
     letters = [layer(m, n) for m, n in zip(letter_ms, "BADDI3ST")]
     cs = layer(cs_m, "C/S")
-    crown = layer(crown_m, "crown")
+    crown_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "crown3d", "frames")
+    if not os.path.isdir(crown_dir):
+        sys.exit("3D crown frames missing: run `node crown3d/render.mjs` first")
+    crown = Crown3D(crown_dir, s)
     orn_rgba = chrome.copy()
     orn_rgba[..., 3] *= A.blur(orn_m.astype(np.float32), 0.8)
+    orn_grey = to_grey(orn_rgba, solid)
 
     csx, csy = CS_CENTER[0] * s, CS_CENTER[1] * s
     dist = np.hypot(xx - csx, yy - csy)
@@ -292,6 +384,16 @@ def main():
                 _dot(glow, ex, ey, e["r"], np.sin(np.pi * p) ** 1.5)
         return glow, ring
 
+    def pink_field(t):
+        """Where the pink (and the fire) has reached: (mask 0..1, hot front) full-frame, or scalars."""
+        if t < T_FIRE:
+            return 0
+        if t > T_FIRE + FIRE_SPREAD + 0.35:
+            return 1
+        R = ease_out((t - T_FIRE) / FIRE_SPREAD) * 1350 * s
+        d = dist + edge_noise
+        return (np.clip((R - d) / (140 * s), 0, 1), np.exp(-((d - R) / (70 * s)) ** 2))
+
     def flames(t):
         tl = ((t - T_FIRE) % loop_T) / loop_T
         dx = np.zeros((H, W), np.float32)
@@ -323,7 +425,12 @@ def main():
             paste(canvas, Image.fromarray((fl * 255 + 0.5).astype(np.uint8), "RGBA"), off)
         if t >= T_ORN:
             R = ease_out((t - T_ORN) / 0.4) * 1400 * s
-            o = orn_rgba.copy()
+            pf = pink_field(t)
+            if np.isscalar(pf):
+                o = (orn_rgba if pf else orn_grey).copy()
+            else:
+                o = orn_grey * (1 - pf[0][..., None]) + orn_rgba * pf[0][..., None]
+                o[..., :3] = o[..., :3] + (1 - o[..., :3]) * pf[1][..., None] * 0.8
             rv = np.clip((R - dist) / (60 * s), 0, 1)
             edge = np.exp(-((dist - R) / (40 * s)) ** 2) * (t - T_ORN < 0.6)
             o[..., :3] = o[..., :3] + (1 - o[..., :3]) * edge[..., None] * 0.9
@@ -332,22 +439,21 @@ def main():
         # crown
         if t >= T_CROWN_DROP:
             th = crown_angle(t)
-            c = np.cos(th)
             drop = 1 - ease_out((t - T_CROWN_DROP) / (T_CROWN_LAND - T_CROWN_DROP))
             dt = t - T_CROWN_LAND
             bounce = -14 * s * np.exp(-dt / 0.12) * np.sin(TAU * dt * 4) if dt > 0 else 0
-            im_c, pos = crown.render(sx=max(abs(c), 0.02), sy=1.0, offset=(0, -drop * 520 * s + bounce), mirror=c < 0,
-                                     shade=0.45 + 0.55 * abs(c), flash=0.7 * np.exp(-dt / 0.1) if dt > 0 else 0.0,
+            im_c, pos = crown.render(th, offset=(0, -drop * 560 * s + bounce),
+                                     flash=0.6 * np.exp(-dt / 0.1) if dt > 0 else 0.0,
                                      opacity=min(1, (t - T_CROWN_DROP) / 0.15))
             paste(canvas, im_c, pos + off)
         for lay, t_hit in zip(letters, T_LETTERS):
             st = slam_curve(t, t_hit, FLY, 3.4)
             if st:
-                img, pos = lay.render(**st)
+                img, pos = lay.render(**st, pink=pink_field(t))
                 paste(canvas, img, pos + off)
         st = slam_curve(t, T_CS, FLY_CS, 5.0, squash=0.22)
         if st:
-            img, pos = cs.render(**st)
+            img, pos = cs.render(**st, pink=pink_field(t))
             paste(canvas, img, pos + off)
         # fx overlay
         glow, ring = overlay_fx(t)

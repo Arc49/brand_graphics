@@ -1,0 +1,7 @@
+{
+  "name": "baddi3st-crown3d",
+  "private": true,
+  "type": "module",
+  "description": "Procedural 3D chrome crown rendered headless (Three.js + Playwright) into transparent turntable frames.",
+  "dependencies": { "three": "0.169.0" }
+}

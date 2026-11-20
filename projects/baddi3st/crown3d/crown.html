@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Crown 3D</title>
+<style>html,body{margin:0;background:transparent;overflow:hidden}canvas{display:block}</style>
+<script type="importmap">{ "imports": { "three": "./node_modules/three/build/three.module.js" } }</script>
+</head>
+<body>
+<script type="module">
+import * as THREE from "three";
+
+const qs = new URLSearchParams(location.search);
+const W = +(qs.get("w") || 1600), H = +(qs.get("h") || 1150);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setSize(W, H);
+renderer.setPixelRatio(1);
+renderer.setClearColor(0x000000, 0);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(26, W / H, 0.1, 50);
+camera.position.set(0, 0.85, 5.6);
+camera.lookAt(0, 0.55, 0);
+
+// ---------------------------------------------------------------- environment for the chrome
+// black studio with white softboxes and magenta panels => high-contrast pink chrome like the logo
+const envScene = new THREE.Scene();
+envScene.background = new THREE.Color(0x0c0308);
+const panel = (w, h, color, intensity, pos, look) => {
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h),
+    new THREE.MeshBasicMaterial({ color: new THREE.Color(color).multiplyScalar(intensity), side: THREE.DoubleSide }));
+  m.position.set(...pos); m.lookAt(...look); envScene.add(m);
+};
+panel(6, 1.2, 0xffffff, 3.0, [0, 6, 2], [0, 0, 0]);       // top softbox
+panel(1.2, 5, 0xffffff, 2.2, [-5, 1, 3], [0, 0, 0]);      // left strip
+panel(1.0, 5, 0xffe6f6, 2.0, [5, 1.5, 2], [0, 0, 0]);     // right strip
+panel(5, 3, 0xff2fa8, 2.6, [-4, -1, -3], [0, 0, 0]);      // magenta back-left
+panel(5, 3, 0xff1f8f, 2.4, [4, -1, -3], [0, 0, 0]);       // magenta back-right
+panel(8, 2, 0xff4fc0, 1.6, [0, -4, 1], [0, 0, 0]);        // pink floor bounce
+panel(3, 0.4, 0xffffff, 4.0, [0, 2.5, 5], [0, 0, 0]);     // front rim highlight
+// what the camera-facing surfaces reflect: a big soft white/pink wall behind the camera
+panel(9, 3.5, 0xfff0f8, 2.4, [0, 2.2, 8], [0, 0, 0]);
+panel(9, 2.5, 0xff5fc4, 2.2, [0, -1.2, 7], [0, 0, 0]);
+panel(1.5, 6, 0xffffff, 3.5, [-3.5, 1, 6], [0, 0, 0]);
+panel(1.5, 6, 0xffd0ec, 3.0, [3.5, 1, 6], [0, 0, 0]);
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(envScene, 0.02).texture;
+
+// ---------------------------------------------------------------- materials
+const chrome = new THREE.MeshPhysicalMaterial({ color: 0xffe3f3, metalness: 1, roughness: 0.1, clearcoat: 1, clearcoatRoughness: 0.04 });
+// a few direct lights for crisp specular glints
+const key = new THREE.DirectionalLight(0xffffff, 2.2); key.position.set(-2, 4, 5); scene.add(key);
+const rimL = new THREE.DirectionalLight(0xff4fc0, 2.0); rimL.position.set(3, 1, -3); scene.add(rimL);
+const gemMat = new THREE.MeshPhysicalMaterial({ color: 0xff2aa6, metalness: 0.1, roughness: 0.04, emissive: 0x9a0060,
+  emissiveIntensity: 0.9, clearcoat: 1, clearcoatRoughness: 0.02, flatShading: true, ior: 2.2, specularIntensity: 1 });
+const glowMat = new THREE.MeshBasicMaterial({ color: 0xff3fb4, transparent: true, opacity: 0.85, blending: THREE.AdditiveBlending, depthWrite: false });
+
+const crown = new THREE.Group();
+scene.add(crown);
+
+// ---------------------------------------------------------------- band
+const R = 1.0, BAND_H = 0.34;
+const band = new THREE.Mesh(new THREE.LatheGeometry([
+  new THREE.Vector2(R * 0.96, 0.0), new THREE.Vector2(R * 1.0, 0.0), new THREE.Vector2(R * 1.03, BAND_H),
+  new THREE.Vector2(R * 0.99, BAND_H)], 128), chrome);
+crown.add(band);
+const rim = (y, r, tube) => { const t = new THREE.Mesh(new THREE.TorusGeometry(r, tube, 24, 160), chrome); t.rotation.x = Math.PI / 2; t.position.y = y; crown.add(t); };
+rim(0.0, R * 1.0, 0.05);
+rim(0.06, R * 1.01, 0.018);
+rim(BAND_H, R * 1.03, 0.04);
+rim(BAND_H - 0.06, R * 1.025, 0.014);
+// glowing ring inside the base (the pink halo in the logo)
+const halo = new THREE.Mesh(new THREE.TorusGeometry(R * 0.86, 0.035, 16, 160), glowMat);
+halo.rotation.x = Math.PI / 2; halo.position.y = 0.02; crown.add(halo);
+
+// helper: place an object on the band surface at angle a (0 = front, +z towards camera)
+const onRing = (obj, a, radius, y) => {
+  obj.position.set(Math.sin(a) * radius, y, Math.cos(a) * radius);
+  obj.rotation.y = a;
+  crown.add(obj);
+};
+const gem = (sx, sy, sz) => { const g = new THREE.Mesh(new THREE.OctahedronGeometry(1, 0), gemMat); g.scale.set(sx, sy, sz); return g; };
+const bezel = (sx, sy) => { const b = new THREE.Mesh(new THREE.OctahedronGeometry(1, 0), chrome); b.scale.set(sx * 1.25, sy * 1.25, 0.03); return b; };
+
+// band gems: 16, alternating large / small
+for (let i = 0; i < 16; i++) {
+  const a = (i / 16) * Math.PI * 2;
+  const big = i % 2 === 0;
+  const sx = big ? 0.075 : 0.045, sy = big ? 0.11 : 0.065;
+  onRing(bezel(sx, sy), a, R * 1.035, BAND_H / 2 + 0.01);
+  onRing(gem(sx, sy, 0.05), a, R * 1.06, BAND_H / 2 + 0.01);
+}
+
+// ---------------------------------------------------------------- prongs (extruded, bevelled blades)
+const extrude = (shape, depth = 0.05) => new THREE.ExtrudeGeometry(shape, {
+  depth, bevelEnabled: true, bevelThickness: 0.025, bevelSize: 0.02, bevelSegments: 3, curveSegments: 24 });
+
+function mainProng(h) {          // tall centre prong: waist, side barbs, diamond finial, needle tip
+  const s = new THREE.Shape();
+  s.moveTo(-0.2, 0);
+  s.quadraticCurveTo(-0.06, h * 0.25, -0.07, h * 0.42);
+  s.quadraticCurveTo(-0.2, h * 0.47, -0.27, h * 0.6);   // left barb
+  s.quadraticCurveTo(-0.14, h * 0.55, -0.08, h * 0.56);
+  s.lineTo(-0.15, h * 0.7);                              // diamond finial
+  s.lineTo(0, h);                                        // tip
+  s.lineTo(0.15, h * 0.7);
+  s.lineTo(0.08, h * 0.56);
+  s.quadraticCurveTo(0.14, h * 0.55, 0.27, h * 0.6);
+  s.quadraticCurveTo(0.2, h * 0.47, 0.07, h * 0.42);
+  s.quadraticCurveTo(0.06, h * 0.25, 0.2, 0);
+  s.lineTo(-0.2, 0);
+  return extrude(s);
+}
+function spikeProng(h, barb) {    // medium spike with one curved thorn
+  const s = new THREE.Shape();
+  s.moveTo(-0.13, 0);
+  s.quadraticCurveTo(-0.05, h * 0.4, -0.04, h * 0.62);
+  if (barb) { s.quadraticCurveTo(-0.13, h * 0.6, -0.2, h * 0.72); s.quadraticCurveTo(-0.1, h * 0.7, -0.03, h * 0.72); }
+  s.quadraticCurveTo(0.0, h * 0.85, 0.0, h);
+  s.quadraticCurveTo(0.02, h * 0.82, 0.05, h * 0.66);
+  if (barb) { s.quadraticCurveTo(0.12, h * 0.62, 0.2, h * 0.7); s.quadraticCurveTo(0.12, h * 0.56, 0.05, h * 0.55); }
+  s.quadraticCurveTo(0.06, h * 0.35, 0.13, 0);
+  s.lineTo(-0.13, 0);
+  return extrude(s);
+}
+function hornProng(h) {          // outer horn that curls outwards with a thorn
+  const s = new THREE.Shape();
+  s.moveTo(-0.14, 0);
+  s.quadraticCurveTo(-0.08, h * 0.45, -0.25, h * 0.75);
+  s.quadraticCurveTo(-0.32, h * 0.9, -0.42, h);         // curling tip
+  s.quadraticCurveTo(-0.15, h * 0.85, -0.02, h * 0.6);
+  s.quadraticCurveTo(0.1, h * 0.62, 0.2, h * 0.75);     // thorn
+  s.quadraticCurveTo(0.12, h * 0.5, 0.05, h * 0.42);
+  s.quadraticCurveTo(0.08, h * 0.2, 0.14, 0);
+  s.lineTo(-0.14, 0);
+  return extrude(s);
+}
+
+const prongDefs = [ // angle (deg), geometry, outward lean
+  [0, mainProng(1.0), 0.08], [180, mainProng(1.0), 0.08],
+  [45, spikeProng(0.72, true), 0.12], [-45, spikeProng(0.72, true), 0.12],
+  [135, spikeProng(0.72, true), 0.12], [-135, spikeProng(0.72, true), 0.12],
+  [90, hornProng(0.85), 0.3], [-90, hornProng(0.85), 0.3],
+];
+for (const [deg, geo, lean] of prongDefs) {
+  const a = (deg * Math.PI) / 180;
+  const pivot = new THREE.Group();
+  const m = new THREE.Mesh(geo, chrome);
+  m.position.z = -0.035;                 // centre the extrusion on the ring
+  const tilt = new THREE.Group();
+  tilt.rotation.x = -lean;               // lean outwards
+  tilt.add(m);
+  pivot.add(tilt);
+  pivot.position.set(Math.sin(a) * R * 1.01, BAND_H - 0.02, Math.cos(a) * R * 1.01);
+  // horns mirror on the left side so both curl outwards
+  if (deg < 0 && deg > -180) m.scale.x = -1;
+  if (deg === 90) m.scale.x = 1;
+  pivot.rotation.y = a;
+  crown.add(pivot);
+  if (geo.parameters && deg % 180 === 0) {
+    // big diamond on the centre prongs
+    const g = gem(0.1, 0.15, 0.06); g.position.set(0, 0.62, 0.07);
+    const b = bezel(0.1, 0.15); b.position.set(0, 0.62, 0.04);
+    tilt.add(b); tilt.add(g);
+  }
+}
+
+// ---------------------------------------------------------------- gothic arches between prongs, gem at each bottom
+for (let i = 0; i < 8; i++) {
+  const a0 = (i / 8) * Math.PI * 2, a1 = ((i + 1) / 8) * Math.PI * 2;
+  const pts = [];
+  for (let k = 0; k <= 32; k++) {
+    const u = k / 32;
+    const a = a0 + (a1 - a0) * u;
+    const y = BAND_H + 0.06 + 0.42 * Math.pow(Math.abs(2 * u - 1), 1.8);  // U shape
+    pts.push(new THREE.Vector3(Math.sin(a) * R * 1.03, y, Math.cos(a) * R * 1.03));
+  }
+  const tube = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 64, 0.028, 10, false), chrome);
+  crown.add(tube);
+  onRing(gem(0.04, 0.055, 0.035), (a0 + a1) / 2, R * 1.06, BAND_H + 0.09);
+}
+
+// ---------------------------------------------------------------- API for the renderer
+camera.updateMatrixWorld(); camera.updateProjectionMatrix();
+function project(v) {
+  const p = v.clone().project(camera);
+  return [(p.x * 0.5 + 0.5) * W, (-p.y * 0.5 + 0.5) * H];
+}
+window.setAngle = (deg) => { crown.rotation.y = (deg * Math.PI) / 180; renderer.render(scene, camera); };
+window.snapshot = () => renderer.domElement.toDataURL("image/png");
+window.anchors = () => ({
+  frontBottom: project(new THREE.Vector3(0, -0.05, R)),
+  left: project(new THREE.Vector3(-R, 0, 0)),
+  right: project(new THREE.Vector3(R, 0, 0)),
+  W, H,
+});
+window.ready = true;
+</script>
+</body>
+</html>
